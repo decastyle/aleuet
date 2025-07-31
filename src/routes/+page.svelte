@@ -5,10 +5,24 @@
  import { quartOut } from 'svelte/easing';
 </script>
 
-<div class="flex flex-col items-center justify-center h-screen p-8 text-center bg-gradient-to-b from-primary/20 to-background" transition:fade={{duration: 1100, easing: quartOut}}>
- <h1 class="font-bold text-center text-8xl">Ãleuet</h1>
- <p class="text-2xl">менторлық бағдарламасы <br></p>
- <p class="">9 айлық өсу мен даму</p>
+
+<div class="h-[40vh] px-8 mx-auto text-center bg-gradient-to-b from-muted to-background flex items-center justify-center" transition:fade={{duration: 1200, easing: quartOut}}>
+ <div class="flex flex-col items-center gap-4">
+  <h1 class="text-6xl font-bold tracking-tight">Ãleuet</h1>
+  <div class="flex flex-col items-center">
+   <p class="text-2xl">менторлық бағдарламасы</p>
+   <p class="text-muted-foreground">9 айлық өсу мен даму</p>
+  </div>
+ </div>
+</div>
+
+<div class="max-w-4xl p-8 mx-auto center-grid">
+ <p class="flex flex-col gap-4 text-balance">
+  Ãleuet — халықаралық байқаулар мен олимпиадалар жеңімпаздары, 
+  стартап авторлары құрастырған 7–9 сынып оқушыларына арналған бірегей 9 айлық менторлық бағдарлама. 
+  Біз әрбір оқушы мектепте оқып жүріп-ақ мықты портфолио жинап, әлемнің үздік университеттеріне 
+  түсе алады деп сенеміз.
+ </p>
 </div>
 
 <div class="max-w-4xl p-8 mx-auto center-grid">
@@ -141,7 +155,7 @@
 
   <div class="flex flex-col items-center sm:items-start">
    <h3 class="text-xl font-bold">Ãleuet</h3>
-   <p class="mt-2 text-sm text-muted-foreground">менторлық бағдарламасы</p>
+   <p class="text-sm text-muted-foreground">менторлық бағдарламасы</p>
   </div>
   
   <div class="text-sm">

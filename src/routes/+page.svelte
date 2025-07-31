@@ -3,6 +3,12 @@
     import * as Accordion from "$lib/components/ui/accordion/index.js";
     import { fade } from "svelte/transition";
     import { quartOut } from "svelte/easing";
+
+    import SunIcon from "@lucide/svelte/icons/sun";
+    import MoonIcon from "@lucide/svelte/icons/moon";
+
+    import { toggleMode } from "mode-watcher";
+    import { Button } from "$lib/components/ui/button/index.js";
 </script>
 
 <!-- Navigation Bar -->
@@ -11,13 +17,14 @@
     class="fixed top-0 left-0 right-0 z-50 bg-card backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b"
 >
     <div class="flex items-center justify-between h-16 max-w-4xl px-8 mx-auto">
-        <div class="font-bold">
-            <a href="/" class="text-xl">Ãleuet</a>
+        <div>
+            <a href="/" class="text-xl font-regular hover:underline">Ãleuet</a>
         </div>
         <div class="flex items-center gap-4">
-            <a
+            <Button
+                variant="ghost"
+                size="icon"
                 href="https://wa.me/+77012803322"
-                class="hover:text-primary"
                 aria-label="WhatsApp"
             >
                 <svg
@@ -32,10 +39,12 @@
                         d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"
                     />
                 </svg>
-            </a>
-            <a
+            </Button>
+
+            <Button
+                variant="ghost"
+                size="icon"
                 href="https://instagram.com/aleuet.education"
-                class="hover:text-primary"
                 aria-label="Instagram"
             >
                 <svg
@@ -53,7 +62,16 @@
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
-            </a>
+            </Button>
+            <Button onclick={toggleMode} variant="ghost" size="icon">
+                <SunIcon
+                    class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 !transition-all dark:-rotate-90 dark:scale-0"
+                />
+                <MoonIcon
+                    class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 !transition-all dark:rotate-0 dark:scale-100"
+                />
+                <span class="sr-only">Toggle theme</span>
+            </Button>
         </div>
     </div>
 </nav>
@@ -61,25 +79,51 @@
 <!-- Main Title -->
 
 <div
-    class="h-[60vh] px-8 mx-auto text-center bg-gradient-to-b from-muted to-background flex items-center justify-center"
-    transition:fade={{ duration: 1200, easing: quartOut }}
+    class="h-[40vh] px-8 mx-auto text-center bg-gradient-to-b from-muted to-background flex items-center justify-center"
+    transition:fade={{ duration: 1100, easing: quartOut }}
 >
     <div class="flex flex-col items-center pt-16">
         <h1 class="text-6xl font-bold tracking-tight">Ãleuet</h1>
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center tracking-tight">
             <p class="text-2xl">менторлық бағдарламасы</p>
         </div>
+        <Button
+            variant="outline"
+            size="sm"
+            href="https://wa.me/77012803322"
+            class="flex items-center px-4 py-2 mt-4 font-bold transition duration-300 ease-in-out transform hover:bg-green-400 dark:hover:bg-green-500"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-whatsapp"
+                viewBox="0 0 16 16"
+            >
+                <path
+                    d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"
+                />
+            </svg>
+            Орынды броньдау
+        </Button>
     </div>
 </div>
 
 <!-- Description -->
 
 <div class="max-w-4xl p-8 mx-auto center-grid">
-    <p class="flex flex-col gap-4 text-balance">
-        Ãleuet — халықаралық байқаулар мен олимпиадалар жеңімпаздары, стартап
-        авторлары құрастырған 7–9 сынып оқушыларына арналған бірегей 9 айлық
-        менторлық бағдарлама. Біз әрбір оқушы мектепте оқып жүріп-ақ мықты
-        портфолио жинап, әлемнің үздік университеттеріне түсе алады деп сенеміз.
+    <h1
+        class="flex flex-col w-full mb-4 text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
+    >
+        Ãleuet
+    </h1>
+    <Separator />
+    <p class="flex flex-col gap-4 mt-4 text-balance">
+        — халықаралық байқаулар мен олимпиадалар жеңімпаздары, стартап авторлары
+        құрастырған 7–9 сынып оқушыларына арналған бірегей 9 айлық менторлық
+        бағдарлама. Біз әрбір оқушы мектепте оқып жүріп-ақ мықты портфолио
+        жинап, әлемнің үздік университеттеріне түсе алады деп сенеміз.
     </p>
 </div>
 
@@ -99,7 +143,11 @@
             >
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>
-                    Жоқ. <strong>Ãleuet</strong> – бұл жай ғана үйірме емес, бұл
+                    Жоқ.
+                    
+                </p>
+                <p>
+                    <strong>Ãleuet</strong> – бұл жай ғана үйірме емес, бұл
                     саған болашағың үшін нақты жобалар, жетістіктер мен тәжірибе
                     беретін даму жүйесі. Мұнда сен жай ғана "қатысып қоймайсың",
                     өз портфолиоңды құрып, нақты нәтижені көресің.
@@ -161,7 +209,8 @@
             >
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>
-                    Біз саған таңдау жасауға көмектесеміз! Бағдарламаның басында
+                    Біз саған таңдау жасауға көмектесеміз! <br>
+                    Бағдарламаның басында
                     сен mini-тест пен воркшоптан өтесің, соның нәтижесінде:
                 </p>
                 <p>
@@ -266,7 +315,7 @@
 
 <!-- Footer -->
 
-<footer class="px-4 py-12 bg-gradient-to-b from-background to-card">
+<footer class="px-4 py-4 bg-gradient-to-b from-background to-card">
     <div
         class="flex flex-col items-center justify-between max-w-4xl gap-8 p-8 mx-auto sm:flex-row"
     >

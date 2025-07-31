@@ -1,17 +1,24 @@
 <script lang="ts">
  import { Separator } from "$lib/components/ui/separator/index.js";
  import * as Accordion from "$lib/components/ui/accordion/index.js";
+ import { fade, fly } from 'svelte/transition';
+ import { quartOut } from 'svelte/easing';
 </script>
- 
 
-<div class="center-grid p-8 max-w-4xl mx-auto">
- <h1 class="w-full scroll-m-20 text-balance text-4xl font-extrabold tracking-tight flex flex-col gap-4 mb-4">
+<div class="flex flex-col items-center justify-center h-screen p-8 text-center bg-gradient-to-b from-primary/20 to-background" transition:fade={{duration: 1100, easing: quartOut}}>
+ <h1 class="font-bold text-center text-8xl">Ãleuet</h1>
+ <p class="text-2xl">менторлық бағдарламасы <br></p>
+ <p class="">9 айлық өсу мен даму</p>
+</div>
+
+<div class="max-w-4xl p-8 mx-auto center-grid">
+ <h1 class="flex flex-col w-full gap-4 mb-4 text-4xl font-extrabold tracking-tight scroll-m-20 text-balance">
   Жиі қойылатын сұрақтар
  </h1>
  <Separator />
- <Accordion.Root type="single" class="w-full sm:max-w-[100%]" value="item-1">
+ <Accordion.Root type="single" class="w-full" value="item-1">
   <Accordion.Item value="item-1">
-   <Accordion.Trigger class="text-2xl font-bold">Бұл үйірме ме?</Accordion.Trigger>
+   <Accordion.Trigger class="text-2xl font-regular">Бұл үйірме ме?</Accordion.Trigger>
    <Accordion.Content class="flex flex-col gap-4 text-balance">
     <p>
      Жоқ. <strong>Ãleuet</strong> – бұл жай ғана үйірме емес, бұл саған болашағың үшін нақты жобалар, жетістіктер мен тәжірибе беретін даму жүйесі. Мұнда сен жай ғана "қатысып қоймайсың", өз портфолиоңды құрып, нақты нәтижені көресің.
@@ -19,7 +26,7 @@
    </Accordion.Content>
   </Accordion.Item>
   <Accordion.Item value="item-2">
-   <Accordion.Trigger class="text-2xl font-bold">Кімдер қатыса алады?</Accordion.Trigger>
+   <Accordion.Trigger class="text-2xl font-regular">Кімдер қатыса алады?</Accordion.Trigger>
    <Accordion.Content class="flex flex-col gap-4 text-balance">
     <p>
      Жобаға келесі талаптарға сай келетін барлық 7-9 сынып оқушылары қатыса алады:
@@ -35,7 +42,7 @@
    </Accordion.Content>
   </Accordion.Item>
   <Accordion.Item value="item-3">
-   <Accordion.Trigger class="text-2xl font-bold">Ұзақтығы қанша?</Accordion.Trigger>
+   <Accordion.Trigger class="text-2xl font-regular">Ұзақтығы қанша?</Accordion.Trigger>
    <Accordion.Content class="flex flex-col gap-4 text-balance">
     <p>
      Бағдарлама қыркүйектен мамыр айына дейін, яғни <strong>9 айға</strong> созылады. Бұл – толыққанды оқу жылы сияқты, бірақ мұнда бағаға емес, дағдыларға, жетістіктерге және портфолиоға баса назар аударылады.
@@ -43,7 +50,7 @@
    </Accordion.Content>
   </Accordion.Item>
   <Accordion.Item value="item-4">
-   <Accordion.Trigger class="text-2xl font-bold">Неше бағыт таңдауға болады?</Accordion.Trigger>
+   <Accordion.Trigger class="text-2xl font-regular">Неше бағыт таңдауға болады?</Accordion.Trigger>
    <Accordion.Content class="flex flex-col gap-4 text-balance">
     <p>
      Нақты нәтижеге қол жеткізу үшін және бірнеше нәрсеге шашырап кетпеу үшін 1-2 бағыт таңдауға болады. Егер басында қай бағытты таңдайтыныңды білмесең, қорықпа. Қыркүйекте барлық бағыттармен танысып, өзіңе ұнағанын таңдауға мүмкіндік беретін кіріспе сессиясы болады.
@@ -51,7 +58,7 @@
    </Accordion.Content>
   </Accordion.Item>
   <Accordion.Item value="item-5">
-   <Accordion.Trigger class="text-2xl font-bold">Қай бағыт маған сәйкес келетінін қалай түсінуге болады?</Accordion.Trigger>
+   <Accordion.Trigger class="text-2xl font-regular">Қай бағыт маған сәйкес келетінін қалай түсінуге болады?</Accordion.Trigger>
    <Accordion.Content class="flex flex-col gap-4 text-balance">
     <p>
      Біз саған таңдау жасауға көмектесеміз! Бағдарламаның басында сен mini-тест пен воркшоптан өтесің, соның нәтижесінде:
@@ -67,7 +74,7 @@
    </Accordion.Content>
   </Accordion.Item>
   <Accordion.Item value="item-6">
-   <Accordion.Trigger class="text-2xl font-bold">Менторлар деген кімдер?</Accordion.Trigger>
+   <Accordion.Trigger class="text-2xl font-regular">Менторлар деген кімдер?</Accordion.Trigger>
    <Accordion.Content class="flex flex-col gap-4 text-balance">
     <p>
      Менторлар – бұл 12-сынып оқушылары, олардың тәжірибесі мол:
@@ -83,7 +90,7 @@
    </Accordion.Content>
   </Accordion.Item>
   <Accordion.Item value="item-7">
-   <Accordion.Trigger class="text-2xl font-bold">Нәтижесінде мен не аламын?</Accordion.Trigger>
+   <Accordion.Trigger class="text-2xl font-regular">Нәтижесінде мен не аламын?</Accordion.Trigger>
    <Accordion.Content class="flex flex-col gap-4 text-balance">
     <p>
      Бағдарлама соңында сен:
@@ -101,7 +108,7 @@
    </Accordion.Content>
   </Accordion.Item>
   <Accordion.Item value="item-8">
-   <Accordion.Trigger class="text-2xl font-bold">Бұл шетелде оқуға түсуге көмектесе ме?</Accordion.Trigger>
+   <Accordion.Trigger class="text-2xl font-regular">Бұл шетелде оқуға түсуге көмектесе ме?</Accordion.Trigger>
    <Accordion.Content class="flex flex-col gap-4 text-balance">
     <p>
      Иә! Шетелде грантқа тапсыратындар әрқашан оқудан тыс белсенділігін (extracurricular activities), көшбасшылық қасиеттерін (leadership), қоғамға тигізген әсерін (impact) және жобаларын көрсетеді. Біз саған осының бәрін дәл қазірден бастап, асықпай, күйзеліссіз, жүйелі түрде құруға көмектесеміз.
@@ -109,7 +116,7 @@
    </Accordion.Content>
   </Accordion.Item>
   <Accordion.Item value="item-9">
-   <Accordion.Trigger class="text-2xl font-bold">Сабақтармен және басқа үйірмелермен қатар алып жүруге бола ма?</Accordion.Trigger>
+   <Accordion.Trigger class="text-2xl font-regular">Сабақтармен және басқа үйірмелермен қатар алып жүруге бола ма?</Accordion.Trigger>
    <Accordion.Content class="flex flex-col gap-4 text-balance">
     <p>
      Әрине! Ментормен кездесулер, топтық сабақтар мен бағыт бойынша жиналыстар аптасына жалпы 3 рет, 60 минуттан өтеді, оған қоса өз жобаңды жасауға және тапсырмаларды орындауға уақыт арнайсың. Егер уақытты дұрыс жоспарлай білсең (ал біз оны да үйретеміз), сабаққа да, демалысқа да, өз шаруаларыңа да уақытың жеткілікті болады.
@@ -117,7 +124,7 @@
    </Accordion.Content>
   </Accordion.Item>
   <Accordion.Item value="item-10">
-   <Accordion.Trigger class="text-2xl font-bold">Егер мен Ақтауда/Қазақстанда тұрмасам, қатыса аламын ба?</Accordion.Trigger>
+   <Accordion.Trigger class="text-2xl font-regular">Егер мен Ақтауда/Қазақстанда тұрмасам, қатыса аламын ба?</Accordion.Trigger>
    <Accordion.Content class="flex flex-col gap-4 text-balance">
     <p>
      Иә! Бізде сабақтар онлайн форматта өтеді, сондықтан, қай аймақтан екеніңе қарамастан, біздің бағдарламаға қатыса аласың.
@@ -126,3 +133,20 @@
   </Accordion.Item>
  </Accordion.Root>
 </div>
+
+
+<footer class="px-4 py-12 bg-card">
+
+ <div class="flex flex-col items-center justify-between max-w-4xl gap-8 p-8 mx-auto sm:flex-row">
+
+  <div class="flex flex-col items-center sm:items-start">
+   <h3 class="text-xl font-bold">Ãleuet</h3>
+   <p class="mt-2 text-sm text-muted-foreground">менторлық бағдарламасы</p>
+  </div>
+  
+  <div class="text-sm">
+   © 2024 Ãleuet. All rights reserved.
+  </div>
+
+ </div>
+</footer>

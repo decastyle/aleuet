@@ -14,6 +14,7 @@
     import { Badge } from "$lib/components/ui/badge/index.js";
 
     import { onMount } from "svelte";
+    import * as Carousel from "$lib/components/ui/carousel/index.js";
 
     let days = 0;
     let hours = 0;
@@ -44,6 +45,41 @@
         const interval = setInterval(updateCountdown, 60000); // Update every minute
         return () => clearInterval(interval);
     });
+
+    const mentors = [
+        {
+            name: "Балғабеков Еркебұлан",
+            image: "/mentors/erkebulan.webp",
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            link: "https://www.instagram.com/ba1gabekov/",
+        },
+        {
+            name: "Нұрмұхаммет Қарақат",
+            image: "/mentors/karakat.webp",
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            link: "https://www.instagram.com/knarrahaz/",
+        },
+        {
+            name: "Фамилия Имя",
+            image: "/mentors/mentor-3.webp",
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        },
+        {
+            name: "Фамилия Имя",
+            image: "/mentors/mentor-4.webp",
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        },
+        {
+            name: "Фамилия Имя",
+            image: "/mentors/mentor-5.webp",
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        },
+    ];
 </script>
 
 <!-- Navigation Bar -->
@@ -177,7 +213,7 @@
 
 <!-- Description -->
 
-<div class="max-w-4xl p-8 mx-auto center-grid">
+<div class="max-w-4xl p-4 mx-auto center-grid">
     <h1
         class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
     >
@@ -195,7 +231,7 @@
 
 <!-- Program Areas -->
 
-<div class="max-w-4xl p-8 mx-auto center-grid">
+<div class="max-w-4xl p-4 mx-auto center-grid">
     <h1
         class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
     >
@@ -291,7 +327,7 @@
     </div>
 </div>
 
-<div class="max-w-4xl p-8 mx-auto center-grid">
+<div class="max-w-4xl p-4 mx-auto center-grid">
     <h1
         class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
     >
@@ -340,9 +376,63 @@
     </div>
 </div>
 
+<div class="max-w-4xl p-4 mx-auto center-grid">
+    <h1
+        class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
+    >
+        Бағдарлама менторлары мен спикерлері
+    </h1>
+    <Separator class="my-4" />
+    <Carousel.Root class="w-full">
+        <Carousel.Content class="-ml-4">
+            {#each Array(5) as _, i}
+                <Carousel.Item
+                    class="pl-4 basis-full sm:basis-1/2 md:basis-1/3"
+                >
+                    <Card.Root class="p-0 overflow-hidden ">
+                        <Card.Content
+                            class="p-0 w-full h-[32rem] sm:h-[20rem] md:h-[24rem] relative overflow-hidden"
+                        >
+                            <img
+                                src={mentors[i % mentors.length].image}
+                                alt="Mentor {i + 1}"
+                                class="w-full h-full object-cover absolute top-0 left-0 transition hover:scale-105 duration-300 ease-in-out"
+                                loading="lazy"
+                            />
+                            <div
+                                class="absolute bottom-0 left-0 w-full text-foreground p-4"
+                            >
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-background to-transparent"
+                                ></div>
+                                <a
+                                    class="relative font-bold"
+                                    href={mentors[i % mentors.length].link ||
+                                        "#"}
+                                >
+                                    {mentors[i % mentors.length].name}
+                                </a>
+                                <p class="relative font-regular">
+                                    {mentors[i % mentors.length].description}
+                                </p>
+                            </div>
+                        </Card.Content>
+                    </Card.Root>
+                </Carousel.Item>
+            {/each}
+        </Carousel.Content>
+        <Carousel.Previous
+            class="hidden sm:flex sm:items-center sm:justify-center sm:-left-12 sm:top-1/2 sm:-translate-y-1/2"
+        />
+        <Carousel.Next
+            class="hidden sm:flex sm:items-center sm:justify-center sm:-right-12 sm:top-1/2 sm:-translate-y-1/2"
+        />
+    </Carousel.Root>
+</div>
+
 <!-- Frequently Asked Questions -->
 
-<div class="max-w-4xl p-8 mx-auto center-grid">
+<div class="max-w-4xl p-4 mx-auto center-grid">
     <h1
         class="flex flex-col w-full gap-4 mb-4 text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
     >

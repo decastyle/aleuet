@@ -20,6 +20,8 @@
 
     import * as Dialog from "$lib/components/ui/dialog/index.js";
 
+    import { base } from '$app/paths';
+
     let days = 0;
     let hours = 0;
     let minutes = 0;
@@ -97,7 +99,7 @@
 >
     <div class="flex items-center justify-between h-16 max-w-4xl px-8 mx-auto">
         <div>
-            <a href="/" class="text-xl font-regular hover:underline">Ãleuet</a>
+            <a href="{base}/" class="text-xl font-regular hover:underline">Ãleuet</a>
         </div>
         <div class="flex items-center gap-4">
             <Button
@@ -436,7 +438,7 @@
                                     class="p-0 w-full h-[32rem] sm:h-[20rem] md:h-[24rem] relative overflow-hidden"
                                 >
                                     <img
-                                        src={mentor.image}
+                                        src={base}{mentor.image}
                                         alt={mentor.name}
                                         class="w-full h-full object-cover absolute top-0 left-0 transition hover:scale-105 duration-300 ease-in-out"
                                         loading="lazy"
@@ -456,7 +458,7 @@
                                                 class="h-6 w-6 text-foreground"
                                             >
                                                 <Avatar.Image
-                                                    src={mentor.pfp}
+                                                    src={base}{mentor.pfp}
                                                     alt={mentor.name}
                                                 />
                                                 <Avatar.Fallback>
@@ -510,7 +512,7 @@
                                                 class="relative rounded-2xl overflow-hidden min-h-[50vh]"
                                             >
                                                 <img
-                                                    src={mentor.image}
+                                                    src={base}{mentor.image}
                                                     alt={mentor.name}
                                                     class="w-full h-full object-cover absolute inset-0"
                                                     loading="lazy"

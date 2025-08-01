@@ -18,6 +18,8 @@
 
     import * as Avatar from "$lib/components/ui/avatar/index.js";
 
+    import * as Dialog from "$lib/components/ui/dialog/index.js";
+
     let days = 0;
     let hours = 0;
     let minutes = 0;
@@ -336,6 +338,8 @@
     </div>
 </div>
 
+<!-- What skills will we learn? -->
+
 <div class="max-w-4xl p-4 mx-auto center-grid">
     <h1
         class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
@@ -344,7 +348,7 @@
     </h1>
     <Separator class="m-4" />
 
-    <div class="grid gap-4 md:grid-cols-2">
+    <div class="grid gap-4 md:grid-cols-2 w-full">
         <Card.Root>
             <Card.Header>
                 <Card.Title
@@ -396,6 +400,8 @@
     </div>
 </div>
 
+<!-- Mentors and Speakers -->
+
 <div class="max-w-4xl p-4 mx-auto center-grid">
     <h1
         class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
@@ -409,53 +415,137 @@
                 <Carousel.Item
                     class="pl-4 basis-full sm:basis-1/2 md:basis-1/3"
                 >
-                    <Card.Root class="p-0 overflow-hidden ">
-                        <Card.Content
-                            class="p-0 w-full h-[32rem] sm:h-[20rem] md:h-[24rem] relative overflow-hidden"
-                        >
-                            <img
-                                src={mentor.image}
-                                alt={mentor.name}
-                                class="w-full h-full object-cover absolute top-0 left-0 transition hover:scale-105 duration-300 ease-in-out"
-                                loading="lazy"
-                            />
-                            <div
-                                class="absolute bottom-0 left-0 w-full text-white p-4"
+                    <Dialog.Root>
+                        <Dialog.Trigger class="w-full">
+                            <Card.Root
+                                class="p-0 overflow-hidden cursor-pointer"
                             >
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
-                                ></div>
-                                <a
-                                    class="relative flex items-center gap-2 font-bold hover:underline z-10 pb-2"
-                                    href="https://instagram.com/{mentor.username}"
+                                <Card.Content
+                                    class="p-0 w-full h-[32rem] sm:h-[20rem] md:h-[24rem] relative overflow-hidden"
                                 >
-                                    <Avatar.Root class="h-6 w-6 text-foreground">
-                                        <Avatar.Image
-                                            src={mentor.pfp}
-                                            alt={mentor.name}
-                                        />
-                                        <Avatar.Fallback>
-                                            {mentor.name
-                                                .split(" ")
-                                                .map((n) => n[0])
-                                                .join("")}
-                                        </Avatar.Fallback>
-                                    </Avatar.Root>{mentor.name}
-                                </a>
-                                <div
-                                    class="flex w-full flex-wrap gap-2 relative pb-2"
-                                >
-                                    <Badge>{mentor.badge}</Badge>
-                                    <Badge variant="secondary">
-                                        {mentor.secondary}
-                                    </Badge>
+                                    <img
+                                        src={mentor.image}
+                                        alt={mentor.name}
+                                        class="w-full h-full object-cover absolute top-0 left-0 transition hover:scale-105 duration-300 ease-in-out"
+                                        loading="lazy"
+                                    />
+                                    <div
+                                        class="absolute bottom-0 left-0 w-full text-white p-4 text-left"
+                                    >
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
+                                        ></div>
+                                        <a
+                                            class="relative flex items-center gap-2 font-bold z-10 pb-2"
+                                            href="https://instagram.com/{mentor.username}"
+                                            on:click|stopPropagation
+                                        >
+                                            <Avatar.Root
+                                                class="h-6 w-6 text-foreground"
+                                            >
+                                                <Avatar.Image
+                                                    src={mentor.pfp}
+                                                    alt={mentor.name}
+                                                />
+                                                <Avatar.Fallback>
+                                                    {mentor.name
+                                                        .split(" ")
+                                                        .map((n) => n[0])
+                                                        .join("")}
+                                                </Avatar.Fallback>
+                                            </Avatar.Root>
+                                            <p class="hover:underline">
+                                                {mentor.name}
+                                            </p>
+                                        </a>
+                                        <div
+                                            class="flex w-full flex-wrap gap-2 relative pb-2"
+                                        >
+                                            <Badge>{mentor.badge}</Badge>
+                                            <Badge variant="secondary">
+                                                {mentor.secondary}
+                                            </Badge>
+                                        </div>
+                                        <p
+                                            class="relative font-regular text-left"
+                                        >
+                                            {mentor.description}
+                                        </p>
+                                    </div>
+                                </Card.Content>
+                            </Card.Root>
+                        </Dialog.Trigger>
+
+                        <Dialog.Content class="max-h-[80vh] overflow-auto">
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <div class="w-full sm:w-2/5 min-w-0">
+                                    <Dialog.Header>
+                                        <Dialog.Title>
+                                            <p class="pb-2 text-4xl text-left">
+                                                {mentor.name}
+                                            </p>
+                                            <div
+                                                class="flex w-full flex-wrap gap-2 relative pb-2"
+                                            >
+                                                <Badge>{mentor.badge}</Badge>
+                                                <Badge variant="secondary">
+                                                    {mentor.secondary}
+                                                </Badge>
+                                            </div>
+                                        </Dialog.Title>
+                                        <Dialog.Description>
+                                            <div
+                                                class="relative rounded-2xl overflow-hidden min-h-[50vh]"
+                                            >
+                                                <img
+                                                    src={mentor.image}
+                                                    alt={mentor.name}
+                                                    class="w-full h-full object-cover absolute inset-0"
+                                                    loading="lazy"
+                                                />
+                                                <div
+                                                    class="absolute bottom-0 left-0 w-full p-4 text-white font-regular text-2xl text-left"
+                                                >
+                                                    <div
+                                                        class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
+                                                    ></div>
+                                                    <p
+                                                        class="relative font-regular text-left"
+                                                    >
+                                                        {mentor.description}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </Dialog.Description>
+                                    </Dialog.Header>
                                 </div>
-                                <p class="relative font-regular">
-                                    {mentor.description}
-                                </p>
+                                <Separator
+                                    orientation="vertical"
+                                    class="hidden sm:block"
+                                />
+                                <Separator
+                                    orientation="horizontal"
+                                    class="sm:hidden"
+                                />
+                                <div class="text-balance w-full sm:w-3/5">
+                                    <h2 class="text-2xl font-regular mb-2">
+                                        Additional Information
+                                    </h2>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. Sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna
+                                        aliqua. Ut enim ad minim veniam, quis
+                                        nostrud exercitation ullamco laboris
+                                        nisi ut aliquip ex ea commodo consequat.
+                                        Duis aute irure dolor in reprehenderit
+                                        in voluptate velit esse cillum dolore eu
+                                        fugiat nulla pariatur.
+                                    </p>
+                                </div>
                             </div>
-                        </Card.Content>
-                    </Card.Root>
+                        </Dialog.Content>
+                    </Dialog.Root>
                 </Carousel.Item>
             {/each}
         </Carousel.Content>

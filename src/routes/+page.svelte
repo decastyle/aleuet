@@ -16,6 +16,8 @@
     import { onMount } from "svelte";
     import * as Carousel from "$lib/components/ui/carousel/index.js";
 
+    import * as Avatar from "$lib/components/ui/avatar/index.js";
+
     let days = 0;
     let hours = 0;
     let minutes = 0;
@@ -52,14 +54,18 @@
             image: "/mentors/erkebulan.webp",
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            link: "https://www.instagram.com/ba1gabekov/",
+            username: "ba1gabekov",
+            badge: "CEO",
+            secondary: "Founder",
         },
         {
             name: "Нұрмұхаммет Қарақат",
             image: "/mentors/karakat.webp",
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            link: "https://www.instagram.com/knarrahaz/",
+            username: "knarrahaz",
+            badge: "Journalism",
+            secondary: "Media",
         },
         {
             name: "Фамилия Имя",
@@ -223,8 +229,11 @@
     <p class="flex-col gap-4 text-balance">
         — халықаралық байқаулар мен олимпиадалар жеңімпаздары, стартап авторлары
         құрастырған 7–9 сынып оқушыларына арналған бірегей <span
-            style="text-decoration: underline;">9 айлық</span
-        > менторлық бағдарлама. Біз әрбір оқушы мектепте оқып жүріп-ақ мықты портфолио
+            style="text-decoration: underline;"
+        >
+            9 айлық
+        </span>
+        менторлық бағдарлама. Біз әрбір оқушы мектепте оқып жүріп-ақ мықты портфолио
         жинап, әлемнің үздік университеттеріне түсе алады деп сенеміз.
     </p>
 </div>
@@ -340,17 +349,22 @@
             <Card.Header>
                 <Card.Title
                     class="flex flex-col items-center justify-between text-4xl font-medium"
-                    >Hard skills
+                >
+                    Hard skills
                 </Card.Title>
             </Card.Header>
             <Card.Content>
                 <p class="text-balance">
-                    - Әр бағыт бойынша арнайы стратегия арқылы жұмыстанып, даму<br
-                    />
-                    - Жеке дайын жоба/стартап<br />
-                    - Мықты портфолио құру<br />
-                    - Зерттеу және аналитика<br />
-                    - Қаржылық сауаттылық<br />
+                    - Әр бағыт бойынша арнайы стратегия арқылы жұмыстанып, даму
+                    <br />
+                    - Жеке дайын жоба/стартап
+                    <br />
+                    - Мықты портфолио құру
+                    <br />
+                    - Зерттеу және аналитика
+                    <br />
+                    - Қаржылық сауаттылық
+                    <br />
                     - Python-ға кіріспе, логика
                 </p>
             </Card.Content>
@@ -359,16 +373,22 @@
             <Card.Header>
                 <Card.Title
                     class="flex flex-col items-center justify-between text-4xl font-medium"
-                    >Soft skills
+                >
+                    Soft skills
                 </Card.Title>
             </Card.Header>
             <Card.Content>
                 <p class="text-balance">
-                    - Өзін-өзі тану дағдылары мен мақсаттары<br />
-                    - Презентация дағдылары<br />
-                    - Критикалық ойлау<br />
-                    - Академиялық жазу және зерттеу дағдылары<br />
-                    - Көшбасшылық және командамен жұмыс<br />
+                    - Өзін-өзі тану дағдылары мен мақсаттары
+                    <br />
+                    - Презентация дағдылары
+                    <br />
+                    - Критикалық ойлау
+                    <br />
+                    - Академиялық жазу және зерттеу дағдылары
+                    <br />
+                    - Көшбасшылық және командамен жұмыс
+                    <br />
                     - Эмоционалды интеллект
                 </p>
             </Card.Content>
@@ -385,7 +405,7 @@
     <Separator class="my-4" />
     <Carousel.Root class="w-full">
         <Carousel.Content class="-ml-4">
-            {#each Array(5) as _, i}
+            {#each mentors as mentor, i}
                 <Carousel.Item
                     class="pl-4 basis-full sm:basis-1/2 md:basis-1/3"
                 >
@@ -394,26 +414,44 @@
                             class="p-0 w-full h-[32rem] sm:h-[20rem] md:h-[24rem] relative overflow-hidden"
                         >
                             <img
-                                src={mentors[i % mentors.length].image}
-                                alt="Mentor {i + 1}"
+                                src={mentor.image}
+                                alt={mentor.name}
                                 class="w-full h-full object-cover absolute top-0 left-0 transition hover:scale-105 duration-300 ease-in-out"
                                 loading="lazy"
                             />
                             <div
-                                class="absolute bottom-0 left-0 w-full text-foreground p-4"
+                                class="absolute bottom-0 left-0 w-full text-white p-4"
                             >
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-t from-background to-transparent"
+                                    class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
                                 ></div>
                                 <a
-                                    class="relative font-bold"
-                                    href={mentors[i % mentors.length].link ||
-                                        "#"}
+                                    class="relative flex items-center gap-2 font-bold hover:underline z-10 pb-2"
+                                    href="https://instagram.com/{mentor.username}"
                                 >
-                                    {mentors[i % mentors.length].name}
+                                    <Avatar.Root class="h-6 w-6 text-foreground">
+                                        <Avatar.Image
+                                            src={mentor.pfp}
+                                            alt={mentor.name}
+                                        />
+                                        <Avatar.Fallback>
+                                            {mentor.name
+                                                .split(" ")
+                                                .map((n) => n[0])
+                                                .join("")}
+                                        </Avatar.Fallback>
+                                    </Avatar.Root>{mentor.name}
                                 </a>
+                                <div
+                                    class="flex w-full flex-wrap gap-2 relative pb-2"
+                                >
+                                    <Badge>{mentor.badge}</Badge>
+                                    <Badge variant="secondary">
+                                        {mentor.secondary}
+                                    </Badge>
+                                </div>
                                 <p class="relative font-regular">
-                                    {mentors[i % mentors.length].description}
+                                    {mentor.description}
                                 </p>
                             </div>
                         </Card.Content>
@@ -441,31 +479,33 @@
     <Separator />
     <Accordion.Root type="single" class="w-full" value="item-1">
         <Accordion.Item value="item-1">
-            <Accordion.Trigger class="text-2xl font-regular"
-                >Бұл үйірме ме?</Accordion.Trigger
-            >
+            <Accordion.Trigger class="text-2xl font-regular">
+                Бұл үйірме ме?
+            </Accordion.Trigger>
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>Жоқ.</p>
                 <p>
-                    <strong>Ãleuet</strong> – бұл жай ғана үйірме емес, бұл саған
-                    болашағың үшін нақты жобалар, жетістіктер мен тәжірибе беретін
-                    даму жүйесі. Мұнда сен жай ғана "қатысып қоймайсың", өз портфолиоңды
-                    құрып, нақты нәтижені көресің.
+                    <strong>Ãleuet</strong>
+                    – бұл жай ғана үйірме емес, бұл саған болашағың үшін нақты жобалар,
+                    жетістіктер мен тәжірибе беретін даму жүйесі. Мұнда сен жай ғана
+                    "қатысып қоймайсың", өз портфолиоңды құрып, нақты нәтижені көресің.
                 </p>
             </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-2">
-            <Accordion.Trigger class="text-2xl font-regular"
-                >Кімдер қатыса алады?</Accordion.Trigger
-            >
+            <Accordion.Trigger class="text-2xl font-regular">
+                Кімдер қатыса алады?
+            </Accordion.Trigger>
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>
                     Жобаға келесі талаптарға сай келетін барлық 7-9 сынып
                     оқушылары қатыса алады:
                 </p>
                 <p>
-                    - сабақтан тыс уақытта өзін дамытқысы келетіндер<br />
-                    - жаңа нәрсені байқап көруден қорықпайтындар<br />
+                    - сабақтан тыс уақытта өзін дамытқысы келетіндер
+                    <br />
+                    - жаңа нәрсені байқап көруден қорықпайтындар
+                    <br />
                     - шетелде оқуды немесе жай ғана өмірдегі өз бағытын табуды армандайтындар.
                 </p>
                 <p>
@@ -476,23 +516,23 @@
             </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-3">
-            <Accordion.Trigger class="text-2xl font-regular"
-                >Ұзақтығы қанша?</Accordion.Trigger
-            >
+            <Accordion.Trigger class="text-2xl font-regular">
+                Ұзақтығы қанша?
+            </Accordion.Trigger>
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>
-                    Бағдарлама қыркүйектен мамыр айына дейін, яғни <strong
-                        >9 айға</strong
-                    >
+                    Бағдарлама қыркүйектен мамыр айына дейін, яғни <strong>
+                        9 айға
+                    </strong>
                     созылады. Бұл – толыққанды оқу жылы сияқты, бірақ мұнда бағаға
                     емес, дағдыларға, жетістіктерге және портфолиоға баса назар аударылады.
                 </p>
             </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-4">
-            <Accordion.Trigger class="text-2xl font-regular"
-                >Неше бағыт таңдауға болады?</Accordion.Trigger
-            >
+            <Accordion.Trigger class="text-2xl font-regular">
+                Неше бағыт таңдауға болады?
+            </Accordion.Trigger>
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>
                     Нақты нәтижеге қол жеткізу үшін және бірнеше нәрсеге шашырап
@@ -504,9 +544,9 @@
             </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-5">
-            <Accordion.Trigger class="text-2xl font-regular"
-                >Қай бағыт маған сәйкес келетінін қалай түсінуге болады?</Accordion.Trigger
-            >
+            <Accordion.Trigger class="text-2xl font-regular">
+                Қай бағыт маған сәйкес келетінін қалай түсінуге болады?
+            </Accordion.Trigger>
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>
                     Біз саған таңдау жасауға көмектесеміз! <br />
@@ -514,8 +554,10 @@
                     нәтижесінде:
                 </p>
                 <p>
-                    - өзіңнің мықты тұстарыңды.<br />
-                    - саған шынымен не қызық екенін.<br />
+                    - өзіңнің мықты тұстарыңды.
+                    <br />
+                    - саған шынымен не қызық екенін.
+                    <br />
                     - қай салада көбірек өсе алатыныңды білесің.
                 </p>
                 <p>
@@ -526,18 +568,19 @@
             </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-6">
-            <Accordion.Trigger class="text-2xl font-regular"
-                >Менторлар деген кімдер?</Accordion.Trigger
-            >
+            <Accordion.Trigger class="text-2xl font-regular">
+                Менторлар деген кімдер?
+            </Accordion.Trigger>
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>
                     Менторлар – бұл 12-сынып оқушылары, олардың тәжірибесі мол:
                 </p>
                 <p>
                     - олимпиадаларда, хакатондарда және ғылыми жобалар
-                    байқауларында жеңіске жеткен.<br />
-                    - тағылымдамадан өтіп, өз бағытын A-дан Я-ға дейін зерттеген.<br
-                    />
+                    байқауларында жеңіске жеткен.
+                    <br />
+                    - тағылымдамадан өтіп, өз бағытын A-дан Я-ға дейін зерттеген.
+                    <br />
                     - стартаптар мен медиа жобалар құрып, код жазған.
                 </p>
                 <p>
@@ -547,18 +590,22 @@
             </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-7">
-            <Accordion.Trigger class="text-2xl font-regular"
-                >Нәтижесінде мен не аламын?</Accordion.Trigger
-            >
+            <Accordion.Trigger class="text-2xl font-regular">
+                Нәтижесінде мен не аламын?
+            </Accordion.Trigger>
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>Бағдарлама соңында сен:</p>
                 <p>
-                    - өз бағытың бойынша құнды білім аласың,<br />
+                    - өз бағытың бойынша құнды білім аласың,
+                    <br />
                     - шағын портфолио жасайсың (бағытқа байланысты: мақала, сайт,
-                    жоба, сұхбат және т.б.),<br />
-                    - ментордан пікір (отзыв) аласың,<br />
+                    жоба, сұхбат және т.б.),
+                    <br />
+                    - ментордан пікір (отзыв) аласың,
+                    <br />
                     - болашағыңды қалай құру керектігін және өз күшіңнің неде екенін
-                    түсінесің,<br />
+                    түсінесің,
+                    <br />
                     - пікірлес достардан құралған команда табасың.
                 </p>
                 <p>
@@ -569,9 +616,9 @@
             </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-8">
-            <Accordion.Trigger class="text-2xl font-regular"
-                >Бұл шетелде оқуға түсуге көмектесе ме?</Accordion.Trigger
-            >
+            <Accordion.Trigger class="text-2xl font-regular">
+                Бұл шетелде оқуға түсуге көмектесе ме?
+            </Accordion.Trigger>
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>
                     Иә! Шетелде грантқа тапсыратындар әрқашан оқудан тыс
@@ -584,9 +631,9 @@
             </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-9">
-            <Accordion.Trigger class="text-2xl font-regular"
-                >Сабақтармен және басқа үйірмелермен қатар алып жүруге бола ма?</Accordion.Trigger
-            >
+            <Accordion.Trigger class="text-2xl font-regular">
+                Сабақтармен және басқа үйірмелермен қатар алып жүруге бола ма?
+            </Accordion.Trigger>
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>
                     Әрине! Ментормен кездесулер, топтық сабақтар мен бағыт
@@ -599,9 +646,9 @@
             </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item value="item-10">
-            <Accordion.Trigger class="text-2xl font-regular"
-                >Егер мен Ақтауда/Қазақстанда тұрмасам, қатыса аламын ба?</Accordion.Trigger
-            >
+            <Accordion.Trigger class="text-2xl font-regular">
+                Егер мен Ақтауда/Қазақстанда тұрмасам, қатыса аламын ба?
+            </Accordion.Trigger>
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>
                     Иә! Бізде сабақтар онлайн форматта өтеді, сондықтан, қай

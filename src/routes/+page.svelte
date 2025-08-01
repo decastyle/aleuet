@@ -9,6 +9,41 @@
 
     import { toggleMode } from "mode-watcher";
     import { Button } from "$lib/components/ui/button/index.js";
+
+    import * as Card from "$lib/components/ui/card/index.js";
+    import { Badge } from "$lib/components/ui/badge/index.js";
+
+    import { onMount } from "svelte";
+
+    let days = 0;
+    let hours = 0;
+    let minutes = 0;
+
+    const targetDate: Date = new Date("2025-09-01T00:00:00");
+
+    function updateCountdown() {
+        const now = new Date();
+        const timeDiff = targetDate.getTime() - now.getTime();
+
+        if (timeDiff <= 0) {
+            days = 0;
+            hours = 0;
+            minutes = 0;
+            return;
+        }
+
+        days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        hours = Math.floor(
+            (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    }
+
+    onMount(() => {
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 60000); // Update every minute
+        return () => clearInterval(interval);
+    });
 </script>
 
 <!-- Navigation Bar -->
@@ -24,7 +59,7 @@
             <Button
                 variant="ghost"
                 size="icon"
-                href="https://wa.me/+77012803322"
+                href="https://wa.me/77012803322"
                 aria-label="WhatsApp"
             >
                 <svg
@@ -105,26 +140,204 @@
                     d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"
                 />
             </svg>
-            Орынды броньдау
+            Орынды брондау
         </Button>
     </div>
+</div>
+
+<!-- Countdown -->
+<div class="max-w-4xl px-8 pb-8 mx-auto center-grid">
+    <h1
+        class="flex flex-col items-center w-full text-2xl tracking-tight text-center scroll-m-20"
+    >
+        Курсқа жазылу үшін 1 қыркүйекке дейін небәрі
+    </h1>
+    <Separator class="m-4" />
+    <div class="flex space-x-4">
+        <div class="text-center">
+            <span class="block text-6xl">{days}</span>
+            <span class="block">күн</span>
+        </div>
+        <div class="text-center">
+            <span class="block text-6xl">{hours}</span>
+            <span class="block">сағат</span>
+        </div>
+        <div class="text-center">
+            <span class="block text-6xl">{minutes}</span>
+            <span class="block">минут</span>
+        </div>
+    </div>
+    <Separator class="m-4" />
+    <p
+        class="flex flex-col items-center w-full text-2xl tracking-tight text-balance"
+    >
+        қалды!
+    </p>
 </div>
 
 <!-- Description -->
 
 <div class="max-w-4xl p-8 mx-auto center-grid">
     <h1
-        class="flex flex-col w-full mb-4 text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
+        class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
     >
         Ãleuet
     </h1>
-    <Separator />
-    <p class="flex flex-col gap-4 mt-4 text-balance">
+    <Separator class="m-4" />
+    <p class="flex-col gap-4 text-balance">
         — халықаралық байқаулар мен олимпиадалар жеңімпаздары, стартап авторлары
-        құрастырған 7–9 сынып оқушыларына арналған бірегей 9 айлық менторлық
-        бағдарлама. Біз әрбір оқушы мектепте оқып жүріп-ақ мықты портфолио
+        құрастырған 7–9 сынып оқушыларына арналған бірегей <span
+            style="text-decoration: underline;">9 айлық</span
+        > менторлық бағдарлама. Біз әрбір оқушы мектепте оқып жүріп-ақ мықты портфолио
         жинап, әлемнің үздік университеттеріне түсе алады деп сенеміз.
     </p>
+</div>
+
+<!-- Program Areas -->
+
+<div class="max-w-4xl p-8 mx-auto center-grid">
+    <h1
+        class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
+    >
+        Бағдарлама бағыттары
+    </h1>
+    <Separator class="m-4" />
+    <p class="flex-col gap-4 pb-8 text-balance">
+        Әр оқушы 1 немесе 2 бағыттан таңдай алады. Біз әр бағыт бойынша талантты
+        ашып, жобалар мен байқауларда тәжірибе жинауға және жаңа деңгейге
+        көтерілуге көмектесеміз.
+    </p>
+    <div class="grid gap-4 md:grid-cols-3">
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Журналистика және медиа</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Мақала, сценарий жазу; сұқбат алу; репортаж түсіру;
+                    аудитория алдында сөйлеуді үйрену
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>3D және дизайн</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    3D-басып шығару, графикамен жұмыс істеу; макеттер мен
+                    брендтер жасау
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Пікірсайыс және көпшілік алдында сөйлеу</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Аргументация, импровизация, турнирлерге қатысу
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Кодинг және ІТ жобалар</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Веб-сайт құру, деректерді талдау, Python, жасанды интеллект
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Инновациялар және ғылыми стартаптар</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Шынайы мәселелерді шешу; идеяларды жүзеге асыру
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Әлеуметтік клубтар және еріктілік</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Қайырымдылық жобаларын ұйымдастыру, еріктілікке белсенді
+                    түрде атсалысу
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Бизнес және кәсіпкерлік</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Өнім ойлап табу, оны нарыққа шығару, командалық менеджмент,
+                    қаржылық жоспарлау
+                </p>
+            </Card.Content>
+        </Card.Root>
+    </div>
+</div>
+
+<div class="max-w-4xl p-8 mx-auto center-grid">
+    <h1
+        class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
+    >
+        Біз нені үйретеміз?
+    </h1>
+    <Separator class="m-4" />
+
+    <div class="grid gap-4 md:grid-cols-2">
+        <Card.Root>
+            <Card.Header>
+                <Card.Title
+                    class="flex flex-col items-center justify-between text-4xl font-medium"
+                    >Hard skills
+                </Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    - Әр бағыт бойынша арнайы стратегия арқылы жұмыстанып, даму<br
+                    />
+                    - Жеке дайын жоба/стартап<br />
+                    - Мықты портфолио құру<br />
+                    - Зерттеу және аналитика<br />
+                    - Қаржылық сауаттылық<br />
+                    - Python-ға кіріспе, логика
+                </p>
+            </Card.Content>
+        </Card.Root>
+        <Card.Root>
+            <Card.Header>
+                <Card.Title
+                    class="flex flex-col items-center justify-between text-4xl font-medium"
+                    >Soft skills
+                </Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    - Өзін-өзі тану дағдылары мен мақсаттары<br />
+                    - Презентация дағдылары<br />
+                    - Критикалық ойлау<br />
+                    - Академиялық жазу және зерттеу дағдылары<br />
+                    - Көшбасшылық және командамен жұмыс<br />
+                    - Эмоционалды интеллект
+                </p>
+            </Card.Content>
+        </Card.Root>
+    </div>
 </div>
 
 <!-- Frequently Asked Questions -->
@@ -142,15 +355,12 @@
                 >Бұл үйірме ме?</Accordion.Trigger
             >
             <Accordion.Content class="flex flex-col gap-4 text-balance">
+                <p>Жоқ.</p>
                 <p>
-                    Жоқ.
-                    
-                </p>
-                <p>
-                    <strong>Ãleuet</strong> – бұл жай ғана үйірме емес, бұл
-                    саған болашағың үшін нақты жобалар, жетістіктер мен тәжірибе
-                    беретін даму жүйесі. Мұнда сен жай ғана "қатысып қоймайсың",
-                    өз портфолиоңды құрып, нақты нәтижені көресің.
+                    <strong>Ãleuet</strong> – бұл жай ғана үйірме емес, бұл саған
+                    болашағың үшін нақты жобалар, жетістіктер мен тәжірибе беретін
+                    даму жүйесі. Мұнда сен жай ғана "қатысып қоймайсың", өз портфолиоңды
+                    құрып, нақты нәтижені көресің.
                 </p>
             </Accordion.Content>
         </Accordion.Item>
@@ -209,9 +419,9 @@
             >
             <Accordion.Content class="flex flex-col gap-4 text-balance">
                 <p>
-                    Біз саған таңдау жасауға көмектесеміз! <br>
-                    Бағдарламаның басында
-                    сен mini-тест пен воркшоптан өтесің, соның нәтижесінде:
+                    Біз саған таңдау жасауға көмектесеміз! <br />
+                    Бағдарламаның басында сен mini-тест пен воркшоптан өтесің, соның
+                    нәтижесінде:
                 </p>
                 <p>
                     - өзіңнің мықты тұстарыңды.<br />

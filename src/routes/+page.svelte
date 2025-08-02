@@ -20,13 +20,13 @@
 
     import * as Dialog from "$lib/components/ui/dialog/index.js";
 
-    import { base } from "$app/paths";
-
     import { images } from "$lib/images/index";
 
-    let days = 0;
-    let hours = 0;
-    let minutes = 0;
+    import * as Pagination from "$lib/components/ui/pagination/index.js";
+
+    let days = $state(0);
+    let hours = $state(0);
+    let minutes = $state(0);
 
     const targetDate: Date = new Date("2025-09-01T00:00:00");
 
@@ -58,15 +58,18 @@
         {
             name: "Балғабеков Еркебұлан",
             image: images["erkebulan.webp"],
+            pfp: images["erkebulan_pfp.jpg"],
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             username: "ba1gabekov",
             badge: "CEO",
             secondary: "Founder",
+            about: "Мен – халықаралық олимпиадалар мен байқаулардың жеңімпазымын. Менің мақсатым – жастарға өз әлеуетін ашуға көмектесу.",
         },
         {
             name: "Нұрмұхаммет Қарақат",
             image: images["karakat.jpg"],
+            pfp: images["erkebulan_pfp.jpg"],
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             username: "knarrahaz",
@@ -76,6 +79,7 @@
         {
             name: "Сайранова Сара",
             image: images["sara.jpg"],
+            pfp: images["erkebulan_pfp.jpg"],
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             username: "",
@@ -85,6 +89,7 @@
         {
             name: "Закуова Амира",
             image: images["amira.jpg"],
+            pfp: images["erkebulan_pfp.jpg"],
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             username: "zak_amira",
@@ -92,6 +97,32 @@
             secondary: "Economist",
         },
     ];
+    import type { EmblaCarouselType } from "embla-carousel"; // Import the type from embla-carouse
+
+    // Carousel logic
+    let currentIndex = $state(0);
+    let api = $state<EmblaCarouselType | null>(null);
+
+    const count = $derived(api ? api.scrollSnapList().length : 0);
+
+    // Sync carousel with currentIndex
+    $effect(() => {
+        if (api && currentIndex >= 0 && currentIndex < count) {
+            api.scrollTo(currentIndex, false); // Scroll to exact slide, no animation for instant sync
+        }
+    });
+
+    // Update currentIndex when carousel selection changes
+    $effect(() => {
+        if (api) {
+            api.on("select", () => {
+                currentIndex = api!.selectedScrollSnap(); // Update to current slide index
+            });
+            api.on("reInit", () => {
+                currentIndex = api!.selectedScrollSnap(); // Re-sync on re-initialization (e.g., resize)
+            });
+        }
+    });
 </script>
 
 <!-- Navigation Bar -->
@@ -101,9 +132,7 @@
 >
     <div class="flex items-center justify-between h-16 max-w-4xl px-8 mx-auto">
         <div>
-            <a href="{base}/" class="text-xl font-regular hover:underline">
-                Ãleuet
-            </a>
+            <a href="/" class="text-xl font-regular hover:underline">Ãleuet</a>
         </div>
         <div class="flex items-center gap-4">
             <Button
@@ -421,15 +450,22 @@
         <p>
             Біздегі әр ментор — Республикалық, Халықаралық байқаулар мен
             олимпиадалардың жүлдегерлері, мықты бағдарламалардың қатысушылары
-            және белсенді, тәжірибелі оқушы. <br />
-            Біз сіз енді бастап жатқан жолдан өттік және сізге әдетте орын алатын
-            қателіктерді болдырмауға көмектесеміз!
+            және белсенді, тәжірибелі оқушы.
+        </p>
+        <p>
+            Біз сіз енді бастап жатқан жолдан өттік және сізге әдетте орын
+            алатын қателіктерді болдырмауға көмектесеміз!
         </p>
     </div>
 
-    <Carousel.Root class="w-full">
+    <Carousel.Root
+        setApi={(emblaApi: EmblaCarouselType | undefined) => {
+            api = emblaApi ?? null;
+        }}
+        class="w-full"
+    >
         <Carousel.Content class="-ml-4">
-            {#each mentors as mentor, i}
+            {#each mentors as mentor, i (i)}
                 <Carousel.Item
                     class="pl-4 basis-full sm:basis-1/2 md:basis-1/3"
                 >
@@ -456,21 +492,29 @@
                                         <a
                                             class="relative flex items-center gap-2 font-bold z-10 pb-2"
                                             href="https://instagram.com/{mentor.username}"
-                                            on:click|stopPropagation
+                                            onclick={(e) => e.stopPropagation()}
                                         >
                                             <Avatar.Root
                                                 class="h-6 w-6 text-foreground"
                                             >
-                                                <Avatar.Image
-                                                    src="{base}{mentor.pfp}"
+                                                <!-- <Avatar.Image
+                                                    src={mentor.image}
                                                     alt={mentor.name}
                                                 />
+                                                
                                                 <Avatar.Fallback>
                                                     {mentor.name
                                                         .split(" ")
                                                         .map((n) => n[0])
                                                         .join("")}
-                                                </Avatar.Fallback>
+                                                </Avatar.Fallback> -->
+
+                                                <enhanced:img
+                                                    src={mentor.pfp}
+                                                    alt={mentor.name}
+                                                    class="w-full h-full object-cover absolute top-0 left-0"
+                                                    loading="lazy"
+                                                />
                                             </Avatar.Root>
                                             <p class="hover:underline">
                                                 {mentor.name}
@@ -502,7 +546,7 @@
                             <div class="flex flex-col sm:flex-row gap-4">
                                 <!-- Left Column: Mentor Info and Image -->
                                 <div class="w-full sm:w-2/5 flex flex-col">
-                                    <Dialog.Header class="pb-4 mb-4">
+                                    <Dialog.Header class="mb-4">
                                         <Dialog.Title>
                                             <p class="text-4xl text-left">
                                                 {mentor.name}
@@ -552,27 +596,17 @@
                                     class="sm:hidden"
                                 />
                                 <div class="w-full sm:w-3/5 flex flex-col">
-                                    <h2 class="text-2xl font-regular mb-2">
+                                    <h2 class="text-2xl font-regular mb-4">
                                         Мен туралы
                                     </h2>
                                     <div
-                                        class="flex-1 overflow-y-auto pr-2 box-border sm:max-h-[60vh]"
+                                        class="flex-1 overflow-y-auto pr-2 box-border sm:max-h-[57.7vh] flex flex-col gap-4 text-left"
                                     >
-                                        {#each { length: 5 } as _, index}
-                                            <p class="mb-4 text-balance">
-                                                Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit. Sed
-                                                do eiusmod tempor incididunt ut
-                                                labore et dolore magna aliqua.
-                                                Ut enim ad minim veniam, quis
-                                                nostrud exercitation ullamco
-                                                laboris nisi ut aliquip ex ea
-                                                commodo consequat. Duis aute
-                                                irure dolor in reprehenderit in
-                                                voluptate velit esse cillum
-                                                dolore eu fugiat nulla pariatur.
-                                            </p>
-                                        {/each}
+                                        <p class="">
+                                            {mentor.about
+                                                ? mentor.about
+                                                : "Бұл ментор туралы ақпарат жоқ."}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -581,13 +615,47 @@
                 </Carousel.Item>
             {/each}
         </Carousel.Content>
+
         <Carousel.Previous
             class="hidden sm:flex sm:items-center sm:justify-center sm:-left-12 sm:top-1/2 sm:-translate-y-1/2"
         />
         <Carousel.Next
             class="hidden sm:flex sm:items-center sm:justify-center sm:-right-12 sm:top-1/2 sm:-translate-y-1/2"
         />
+        <div class="pb-2"></div>
     </Carousel.Root>
+
+    <Pagination.Root
+        count={mentors.length}
+        perPage={1}
+        page={currentIndex + 1}
+        onPageChange={(newPage) => {
+            currentIndex = newPage - 1; // Update currentIndex (0-based)
+        }}
+    >
+        {#snippet children({ pages, currentPage })}
+            <Pagination.Content>
+                <Pagination.Item></Pagination.Item>
+                {#each pages as page (page.key)}
+                    {#if page.type === "ellipsis"}
+                        <Pagination.Item>
+                            <Pagination.Ellipsis />
+                        </Pagination.Item>
+                    {:else}
+                        <Pagination.Item>
+                            <Pagination.Link
+                                {page}
+                                isActive={currentPage === page.value}
+                            >
+                                {page.value}
+                            </Pagination.Link>
+                        </Pagination.Item>
+                    {/if}
+                {/each}
+                <Pagination.Item></Pagination.Item>
+            </Pagination.Content>
+        {/snippet}
+    </Pagination.Root>
 </div>
 
 <!-- Frequently Asked Questions -->

@@ -16,7 +16,6 @@ const config = {
         }),
         paths: {
             base: "/aleuet",
-			relative: false
         },
     },
 };

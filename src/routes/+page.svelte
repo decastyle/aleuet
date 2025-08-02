@@ -20,7 +20,9 @@
 
     import * as Dialog from "$lib/components/ui/dialog/index.js";
 
-    import { base } from '$app/paths';
+    import { base } from "$app/paths";
+
+    import { images } from "$lib/images/index";
 
     let days = 0;
     let hours = 0;
@@ -55,7 +57,7 @@
     const mentors = [
         {
             name: "Балғабеков Еркебұлан",
-            image: "/mentors/erkebulan.webp",
+            image: images["erkebulan.webp"],
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             username: "ba1gabekov",
@@ -64,30 +66,12 @@
         },
         {
             name: "Нұрмұхаммет Қарақат",
-            image: "/mentors/karakat.webp",
+            image: images["karakat.jpg"],
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             username: "knarrahaz",
             badge: "Journalism",
             secondary: "Media",
-        },
-        {
-            name: "Фамилия Имя",
-            image: "/mentors/mentor-3.webp",
-            description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-            name: "Фамилия Имя",
-            image: "/mentors/mentor-4.webp",
-            description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-            name: "Фамилия Имя",
-            image: "/mentors/mentor-5.webp",
-            description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         },
     ];
 </script>
@@ -99,7 +83,9 @@
 >
     <div class="flex items-center justify-between h-16 max-w-4xl px-8 mx-auto">
         <div>
-            <a href="{base}/" class="text-xl font-regular hover:underline">Ãleuet</a>
+            <a href="{base}/" class="text-xl font-regular hover:underline">
+                Ãleuet
+            </a>
         </div>
         <div class="flex items-center gap-4">
             <Button
@@ -437,8 +423,8 @@
                                 <Card.Content
                                     class="p-0 w-full h-[32rem] sm:h-[20rem] md:h-[24rem] relative overflow-hidden"
                                 >
-                                    <img
-                                        src={base}{mentor.image}
+                                    <enhanced:img
+                                        src={mentor.image}
                                         alt={mentor.name}
                                         class="w-full h-full object-cover absolute top-0 left-0 transition hover:scale-105 duration-300 ease-in-out"
                                         loading="lazy"
@@ -458,7 +444,7 @@
                                                 class="h-6 w-6 text-foreground"
                                             >
                                                 <Avatar.Image
-                                                    src={base}{mentor.pfp}
+                                                    src="{base}{mentor.pfp}"
                                                     alt={mentor.name}
                                                 />
                                                 <Avatar.Fallback>
@@ -511,8 +497,8 @@
                                             <div
                                                 class="relative rounded-2xl overflow-hidden min-h-[50vh]"
                                             >
-                                                <img
-                                                    src={base}{mentor.image}
+                                                <enhanced:img
+                                                    src={mentor.image}
                                                     alt={mentor.name}
                                                     class="w-full h-full object-cover absolute inset-0"
                                                     loading="lazy"

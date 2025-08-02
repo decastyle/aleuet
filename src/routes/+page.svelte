@@ -73,6 +73,24 @@
             badge: "Journalism",
             secondary: "Media",
         },
+        {
+            name: "Сайранова Сара",
+            image: images["sara.jpg"],
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            username: "",
+            badge: "Innovation",
+            secondary: "Startup",
+        },
+        {
+            name: "Закуова Амира",
+            image: images["amira.jpg"],
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            username: "zak_amira",
+            badge: "Business",
+            secondary: "Economist",
+        },
     ];
 </script>
 
@@ -461,7 +479,9 @@
                                         <div
                                             class="flex w-full flex-wrap gap-2 relative pb-2"
                                         >
-                                            <Badge>{mentor.badge}</Badge>
+                                            <Badge variant="default">
+                                                {mentor.badge}
+                                            </Badge>
                                             <Badge variant="secondary">
                                                 {mentor.secondary}
                                             </Badge>
@@ -476,49 +496,53 @@
                             </Card.Root>
                         </Dialog.Trigger>
 
-                        <Dialog.Content class="max-h-[80vh] overflow-auto">
+                        <Dialog.Content
+                            class="max-h-[90vh] overflow-y-auto p-4 box-border"
+                        >
                             <div class="flex flex-col sm:flex-row gap-4">
-                                <div class="w-full sm:w-2/5 min-w-0">
-                                    <Dialog.Header>
+                                <!-- Left Column: Mentor Info and Image -->
+                                <div class="w-full sm:w-2/5 flex flex-col">
+                                    <Dialog.Header class="pb-4 mb-4">
                                         <Dialog.Title>
-                                            <p class="pb-2 text-4xl text-left">
+                                            <p class="text-4xl text-left">
                                                 {mentor.name}
                                             </p>
-                                            <div
-                                                class="flex w-full flex-wrap gap-2 relative pb-2"
-                                            >
-                                                <Badge>{mentor.badge}</Badge>
-                                                <Badge variant="secondary">
-                                                    {mentor.secondary}
-                                                </Badge>
-                                            </div>
                                         </Dialog.Title>
-                                        <Dialog.Description>
-                                            <div
-                                                class="relative rounded-2xl overflow-hidden min-h-[50vh]"
-                                            >
-                                                <enhanced:img
-                                                    src={mentor.image}
-                                                    alt={mentor.name}
-                                                    class="w-full h-full object-cover absolute inset-0"
-                                                    loading="lazy"
-                                                />
-                                                <div
-                                                    class="absolute bottom-0 left-0 w-full p-4 text-white font-regular text-2xl text-left"
-                                                >
-                                                    <div
-                                                        class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
-                                                    ></div>
-                                                    <p
-                                                        class="relative font-regular text-left"
-                                                    >
-                                                        {mentor.description}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </Dialog.Description>
+                                        <div
+                                            class="flex w-full flex-wrap gap-2 relative"
+                                        >
+                                            <Badge>{mentor.badge}</Badge>
+                                            <Badge variant="secondary">
+                                                {mentor.secondary}
+                                            </Badge>
+                                        </div>
+                                        <!-- <Dialog.Description
+                                        ></Dialog.Description> -->
                                     </Dialog.Header>
+                                    <div
+                                        class="relative rounded-2xl overflow-hidden min-h-[50vh]"
+                                    >
+                                        <enhanced:img
+                                            src={mentor.image}
+                                            alt={mentor.name}
+                                            class="w-full h-full object-cover absolute inset-0"
+                                            loading="lazy"
+                                        />
+                                        <div
+                                            class="absolute bottom-0 left-0 w-full p-4 text-white font-regular text-2xl text-left"
+                                        >
+                                            <div
+                                                class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
+                                            ></div>
+                                            <p
+                                                class="relative font-regular text-left"
+                                            >
+                                                {mentor.description}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <Separator
                                     orientation="vertical"
                                     class="hidden sm:block"
@@ -527,21 +551,29 @@
                                     orientation="horizontal"
                                     class="sm:hidden"
                                 />
-                                <div class="text-balance w-full sm:w-3/5">
+                                <div class="w-full sm:w-3/5 flex flex-col">
                                     <h2 class="text-2xl font-regular mb-2">
-                                        Additional Information
+                                        Мен туралы
                                     </h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris
-                                        nisi ut aliquip ex ea commodo consequat.
-                                        Duis aute irure dolor in reprehenderit
-                                        in voluptate velit esse cillum dolore eu
-                                        fugiat nulla pariatur.
-                                    </p>
+                                    <div
+                                        class="flex-1 overflow-y-auto pr-2 box-border sm:max-h-[60vh]"
+                                    >
+                                        {#each { length: 5 } as _, index}
+                                            <p class="mb-4 text-balance">
+                                                Lorem ipsum dolor sit amet,
+                                                consectetur adipiscing elit. Sed
+                                                do eiusmod tempor incididunt ut
+                                                labore et dolore magna aliqua.
+                                                Ut enim ad minim veniam, quis
+                                                nostrud exercitation ullamco
+                                                laboris nisi ut aliquip ex ea
+                                                commodo consequat. Duis aute
+                                                irure dolor in reprehenderit in
+                                                voluptate velit esse cillum
+                                                dolore eu fugiat nulla pariatur.
+                                            </p>
+                                        {/each}
+                                    </div>
                                 </div>
                             </div>
                         </Dialog.Content>

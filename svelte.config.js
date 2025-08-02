@@ -15,19 +15,8 @@ const config = {
             fallback: "404.html",
         }),
         paths: {
-            base: process.argv.includes("dev") ? "" : "/aleuet",
-        },
-    },
-    vite: {
-        build: {
-            assetsDir: "_app/immutable/assets", // Ensure assets go here
-            rollupOptions: {
-                output: {
-                    // Ensure assets are emitted without base path prefix
-                    assetFileNames:
-                        "_app/immutable/assets/[name].[hash][extname]",
-                },
-            },
+            base: "/aleuet",
+			relative: false
         },
     },
 };

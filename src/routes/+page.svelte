@@ -707,7 +707,7 @@
 </div>
 
 <!-- What results will you get? -->
-<div class="max-w-4xl mx-auto p-6 text-left">
+<div class="max-w-4xl mx-auto p-4 text-left">
     <h1
         class="text-4xl font-extrabold tracking-tight scroll-m-20 text-balance mb-6"
     >

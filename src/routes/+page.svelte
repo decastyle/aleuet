@@ -65,36 +65,84 @@
             badge: "CEO",
             secondary: "Founder",
             about: "Мен – халықаралық олимпиадалар мен байқаулардың жеңімпазымын. Менің мақсатым – жастарға өз әлеуетін ашуға көмектесу.",
+            gpa: "5.0",
         },
         {
             name: "Нұрмұхаммет Қарақат",
             image: images["karakat.jpg"],
-            pfp: images["erkebulan_pfp.jpg"],
+            pfp: images["karakat_pfp.jpg"],
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             username: "knarrahaz",
             badge: "Journalism",
             secondary: "Media",
+            gpa: "4.9",
         },
         {
             name: "Сайранова Сара",
             image: images["sara.jpg"],
-            pfp: images["erkebulan_pfp.jpg"],
+            pfp: images["sara_pfp.jpg"],
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             username: "",
             badge: "Innovation",
             secondary: "Startup",
+            gpa: "5.0",
         },
         {
             name: "Закуова Амира",
             image: images["amira.jpg"],
-            pfp: images["erkebulan_pfp.jpg"],
+            pfp: images["amira_pfp.jpg"],
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             username: "zak_amira",
             badge: "Business",
             secondary: "Economist",
+            gpa: "4.5",
+        },
+        {
+            name: "Серік Зейнеп",
+            image: images["zeinep-h.webp"],
+            pfp: images["zeinep_pfp.jpg"],
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            username: "zweesq_",
+            badge: "Debates",
+            secondary: "Economist",
+            gpa: "4.7",
+        },
+        {
+            name: "Нурила Худайберген",
+            image: images["default.jpg"],
+            pfp: images["nurila_pfp.jpg"],
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            username: "nurkhus_",
+            badge: "Social",
+            secondary: "Economist",
+            gpa: "5.0",
+        },
+        {
+            name: "Есқожа Аққу",
+            image: images["default.jpg"],
+            pfp: images["default.jpg"],
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            username: "kkrywi",
+            badge: "Primary",
+            secondary: "Secondary",
+            gpa: "5.0",
+        },
+        {
+            name: "Азизбек Арсен",
+            image: images["default.jpg"],
+            pfp: images["arsen_pfp.jpg"],
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            username: "decastyled",
+            badge: "3D Graphics",
+            secondary: "Artist",
+            gpa: "4.6",
         },
     ];
     import type { EmblaCarouselType } from "embla-carousel"; // Import the type from embla-carouse
@@ -138,7 +186,7 @@
             <Button
                 variant="ghost"
                 size="icon"
-                href="https://wa.me/77012803322"
+                href="https://wa.me/77762803322?text=%D0%A1%D0%B0%D0%BB%D0%B0%D0%BC%D0%B0%D1%82%D1%81%D1%8B%D0%B7%20%D0%B1%D0%B0%3F!%20%D0%9A%D1%83%D1%80%D1%81%20%D0%B6%D0%B0%D0%B9%D0%BB%D1%8B%20%D1%82%D0%BE%D0%BB%D1%8B%D2%93%D1%8B%D1%80%D0%B0%D2%9B%20%D0%B0%D2%9B%D0%BF%D0%B0%D1%80%D0%B0%D1%82%20%D0%B1%D0%B5%D1%80%D0%B5%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5%3F"
                 aria-label="WhatsApp"
             >
                 <svg
@@ -204,7 +252,7 @@
         <Button
             variant="outline"
             size="sm"
-            href="https://wa.me/77012803322"
+            href="https://wa.me/77762803322?text=%D0%A1%D0%B0%D0%BB%D0%B0%D0%BC%D0%B0%D1%82%D1%81%D1%8B%D0%B7%20%D0%B1%D0%B0%3F!%20%D0%9A%D1%83%D1%80%D1%81%20%D0%B6%D0%B0%D0%B9%D0%BB%D1%8B%20%D1%82%D0%BE%D0%BB%D1%8B%D2%93%D1%8B%D1%80%D0%B0%D2%9B%20%D0%B0%D2%9B%D0%BF%D0%B0%D1%80%D0%B0%D1%82%20%D0%B1%D0%B5%D1%80%D0%B5%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5%3F"
             class="flex items-center px-4 py-2 mt-4 font-bold transition duration-300 ease-in-out transform hover:bg-green-400 dark:hover:bg-green-500"
         >
             <svg
@@ -273,166 +321,6 @@
         менторлық бағдарлама. Біз әрбір оқушы мектепте оқып жүріп-ақ мықты портфолио
         жинап, әлемнің үздік университеттеріне түсе алады деп сенеміз.
     </p>
-</div>
-
-<!-- Program Areas -->
-
-<div class="max-w-4xl p-4 mx-auto center-grid">
-    <h1
-        class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
-    >
-        Бағдарлама бағыттары
-    </h1>
-    <Separator class="m-4" />
-    <p class="flex-col gap-4 pb-4 text-balance">
-        Әр оқушы 1 немесе 2 бағыттан таңдай алады. Біз әр бағыт бойынша талантты
-        ашып, жобалар мен байқауларда тәжірибе жинауға және жаңа деңгейге
-        көтерілуге көмектесеміз.
-    </p>
-    <div class="grid gap-4 md:grid-cols-3">
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Журналистика және медиа</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Мақала, сценарий жазу; сұқбат алу; репортаж түсіру;
-                    аудитория алдында сөйлеуді үйрену
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>3D және дизайн</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    3D-басып шығару, графикамен жұмыс істеу; макеттер мен
-                    брендтер жасау
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Пікірсайыс және көпшілік алдында сөйлеу</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Аргументация, импровизация, турнирлерге қатысу
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Кодинг және ІТ жобалар</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Веб-сайт құру, деректерді талдау, Python, жасанды интеллект
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Инновациялар және ғылыми стартаптар</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Шынайы мәселелерді шешу; идеяларды жүзеге асыру
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Әлеуметтік клубтар және еріктілік</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Қайырымдылық жобаларын ұйымдастыру, еріктілікке белсенді
-                    түрде атсалысу
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Бизнес және кәсіпкерлік</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Өнім ойлап табу, оны нарыққа шығару, командалық менеджмент,
-                    қаржылық жоспарлау
-                </p>
-            </Card.Content>
-        </Card.Root>
-    </div>
-</div>
-
-<!-- What skills will we learn? -->
-
-<div class="max-w-4xl p-4 mx-auto center-grid">
-    <h1
-        class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
-    >
-        Біз нені үйретеміз?
-    </h1>
-    <Separator class="m-4" />
-
-    <div class="grid gap-4 md:grid-cols-2 w-full">
-        <Card.Root>
-            <Card.Header>
-                <Card.Title
-                    class="flex flex-col items-center justify-between text-4xl font-medium"
-                >
-                    Hard skills
-                </Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    - Әр бағыт бойынша арнайы стратегия арқылы жұмыстанып, даму
-                    <br />
-                    - Жеке дайын жоба/стартап
-                    <br />
-                    - Мықты портфолио құру
-                    <br />
-                    - Зерттеу және аналитика
-                    <br />
-                    - Қаржылық сауаттылық
-                    <br />
-                    - Python-ға кіріспе, логика
-                </p>
-            </Card.Content>
-        </Card.Root>
-        <Card.Root>
-            <Card.Header>
-                <Card.Title
-                    class="flex flex-col items-center justify-between text-4xl font-medium"
-                >
-                    Soft skills
-                </Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    - Өзін-өзі тану дағдылары мен мақсаттары
-                    <br />
-                    - Презентация дағдылары
-                    <br />
-                    - Критикалық ойлау
-                    <br />
-                    - Академиялық жазу және зерттеу дағдылары
-                    <br />
-                    - Көшбасшылық және командамен жұмыс
-                    <br />
-                    - Эмоционалды интеллект
-                </p>
-            </Card.Content>
-        </Card.Root>
-    </div>
 </div>
 
 <!-- Mentors and Speakers -->
@@ -656,6 +544,232 @@
             </Pagination.Content>
         {/snippet}
     </Pagination.Root>
+</div>
+
+<!-- Program Areas -->
+
+<div class="max-w-4xl p-4 mx-auto center-grid">
+    <h1
+        class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
+    >
+        Бағдарлама бағыттары
+    </h1>
+    <Separator class="m-4" />
+    <p class="flex-col gap-4 pb-4 text-balance">
+        Әр оқушы 1 немесе 2 бағыттан таңдай алады. Біз әр бағыт бойынша талантты
+        ашып, жобалар мен байқауларда тәжірибе жинауға және жаңа деңгейге
+        көтерілуге көмектесеміз.
+    </p>
+    <div class="grid gap-4 md:grid-cols-3">
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Журналистика және медиа</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Мақала, сценарий жазу; сұқбат алу; репортаж түсіру;
+                    аудитория алдында сөйлеуді үйрену
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>3D және дизайн</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    3D-басып шығару, графикамен жұмыс істеу; макеттер мен
+                    брендтер жасау
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Пікірсайыс және көпшілік алдында сөйлеу</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Аргументация, импровизация, турнирлерге қатысу
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Кодинг және ІТ жобалар</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Веб-сайт құру, деректерді талдау, Python, жасанды интеллект
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Инновациялар және ғылыми стартаптар</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Шынайы мәселелерді шешу; идеяларды жүзеге асыру
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Әлеуметтік клубтар және еріктілік</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Қайырымдылық жобаларын ұйымдастыру, еріктілікке белсенді
+                    түрде атсалысу
+                </p>
+            </Card.Content>
+        </Card.Root>
+
+        <Card.Root>
+            <Card.Header>
+                <Card.Title>Бизнес және кәсіпкерлік</Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    Өнім ойлап табу, оны нарыққа шығару, командалық менеджмент,
+                    қаржылық жоспарлау
+                </p>
+            </Card.Content>
+        </Card.Root>
+    </div>
+</div>
+
+<!-- What skills will we learn? -->
+
+<div class="max-w-4xl p-4 mx-auto center-grid">
+    <h1
+        class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
+    >
+        Біз нені үйретеміз?
+    </h1>
+    <Separator class="m-4" />
+
+    <div class="grid gap-4 md:grid-cols-2 w-full">
+        <Card.Root>
+            <Card.Header>
+                <Card.Title
+                    class="flex flex-col items-center justify-between text-4xl font-medium"
+                >
+                    Hard skills
+                </Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    - Әр бағыт бойынша арнайы стратегия арқылы жұмыстанып, даму
+                    <br />
+                    - Жеке дайын жоба/стартап
+                    <br />
+                    - Мықты портфолио құру
+                    <br />
+                    - Зерттеу және аналитика
+                    <br />
+                    - Қаржылық сауаттылық
+                    <br />
+                    - Python-ға кіріспе, логика
+                </p>
+            </Card.Content>
+        </Card.Root>
+        <Card.Root>
+            <Card.Header>
+                <Card.Title
+                    class="flex flex-col items-center justify-between text-4xl font-medium"
+                >
+                    Soft skills
+                </Card.Title>
+            </Card.Header>
+            <Card.Content>
+                <p class="text-balance">
+                    - Өзін-өзі тану дағдылары мен мақсаттары
+                    <br />
+                    - Презентация дағдылары
+                    <br />
+                    - Критикалық ойлау
+                    <br />
+                    - Академиялық жазу және зерттеу дағдылары
+                    <br />
+                    - Көшбасшылық және командамен жұмыс
+                    <br />
+                    - Эмоционалды интеллект
+                </p>
+            </Card.Content>
+        </Card.Root>
+    </div>
+</div>
+
+<!-- What results will you get? -->
+<div class="max-w-4xl mx-auto p-6 text-left">
+    <h1
+        class="text-4xl font-extrabold tracking-tight scroll-m-20 text-balance mb-6"
+    >
+        Бағдарлама нәтижесінде қатысушы не алады
+    </h1>
+    <Separator class="my-4" />
+    <ul class="grid gap-3 leading-relaxed list-none">
+        <li class="flex items-start gap-2">
+            <span class="">→</span>
+            <span>Кәсіптік бағдар беру (профориентация) бойынша көмек</span>
+        </li>
+        <li class="flex items-start gap-2">
+            <span class="">→</span>
+            <span>Жеке даму жолы</span>
+        </li>
+        <li class="flex items-start gap-2">
+            <span class="">→</span>
+            <span>
+                Жеке жобалар, байқаулар мен тәжірибеден құралған дайын портфолио
+            </span>
+        </li>
+        <li class="flex items-start gap-2">
+            <span class="">→</span>
+            <span>Жарыстарға, олимпиадаларға, шараларға қатысу</span>
+        </li>
+        <li class="flex items-start gap-2">
+            <span class="">→</span>
+            <span>
+                Тәлімгерлермен (менторлармен) тұрақты жеке консультациялар
+            </span>
+        </li>
+        <li class="flex items-start gap-2">
+            <span class="">→</span>
+            <span>Бағдарламаны бітіргені туралы сертификат</span>
+        </li>
+    </ul>
+</div>
+<!-- Pricing -->
+<div class="max-w-4xl mx-auto p-4 text-left">
+    <h1
+        class="text-4xl font-extrabold tracking-tight scroll-m-20 text-balance mb-6"
+    >
+        Бағдарлама құны мен шарттары
+    </h1>
+    <Separator class="my-4" />
+
+    <div class="grid gap-4 leading-relaxed">
+        <div class="flex items-center gap-2">
+            <span class="font-bold">Толық курс:</span>
+            <span>9 ай × 40,000 теңге = 360,000 теңге</span>
+            <span class="text-sm text-muted-foreground">
+                (ай сайын бөлеп төлеу мүмкіндігі)
+            </span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="font-bold">Жеңілдік:</span>
+            <span>3 ай бірден төлегенде 10% жеңілдік</span>
+            <span class="text-sm text-muted-foreground">
+                (360,000 × 0.9 = 324,000 теңге)
+            </span>
+        </div>
+    </div>
 </div>
 
 <!-- Frequently Asked Questions -->

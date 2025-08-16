@@ -24,6 +24,8 @@
 
     import * as Pagination from "$lib/components/ui/pagination/index.js";
 
+    import * as HoverCard from "$lib/components/ui/hover-card/index.js";
+
     import karakat_md from "$lib/about/karakat.md?raw";
     import sara_md from "$lib/about/sara.md?raw";
     import arsen_md from "$lib/about/arsen.md?raw";
@@ -57,12 +59,6 @@
         minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
     }
 
-    onMount(() => {
-        updateCountdown();
-        const interval = setInterval(updateCountdown, 60000); // Update every minute
-        return () => clearInterval(interval);
-    });
-
     const mentors = [
         {
             name: "Балғабеков Еркебұлан",
@@ -72,7 +68,7 @@
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             username: "ba1gabekov",
             badge: "CEO",
-            secondary: "Founder",
+            secondary: "Coding",
             about: erkebulan_md,
             gpa: "5.0",
         },
@@ -161,6 +157,112 @@
             gpa: "4.6",
         },
     ];
+
+    const cardData = [
+        {
+            title: "Журналистика және медиа",
+            description:
+                "Мақала, сценарий жазу; сұқбат алу; репортаж түсіру; аудитория алдында сөйлеуді үйрену",
+            link: "https://en.wikipedia.org/wiki/Journalism",
+            username: "Journalism",
+            bio: "Journalism is the production and distribution of reports on the interaction of events, facts, ideas, and people that are the news of the day and that informs society to at least some degree of accuracy.",
+            joinedDate: "September 2022",
+        },
+        {
+            title: "Инновация және стартап",
+            description:
+                "Жаңа идеяларды әзірлеу; бизнес-жоспар жазу; технологиялық шешімдер құру",
+            link: "https://en.wikipedia.org/wiki/Innovation",
+            username: "Innovation",
+            bio: "Building the future through innovation.",
+            joinedDate: "January 2023",
+        },
+        {
+            title: "Бизнес және экономика",
+            description:
+                "Бизнес-стратегиялар; экономикалық талдау; инвестициялық жоспарлау",
+            link: "https://en.wikipedia.org/wiki/Business",
+            username: "Business",
+            bio: "Empowering entrepreneurs worldwide.",
+            joinedDate: "March 2023",
+        },
+        {
+            title: "Дебаттар және сөйлесу",
+            description:
+                "Сөйлеу өнерін дамыту; дәлелді дәлелдеу; сұхбат техникалары",
+            link: "https://en.wikipedia.org/wiki/Debate",
+            username: "Debate",
+            bio: "Mastering the art of communication.",
+            joinedDate: "June 2023",
+        },
+        {
+            title: "Әлеуметтік қызмет",
+            description:
+                "Қоғамдық жобалар; волонтерлік қызмет; әлеуметтік өзгерістер",
+            link: "https://en.wikipedia.org/wiki/Society",
+            username: "Society",
+            bio: "Creating positive social impact.",
+            joinedDate: "August 2023",
+        },
+        {
+            title: "Бастапқы білім",
+            description:
+                "Негізгі пәндер; оқу материалдары; білім беру технологиялары",
+            link: "https://en.wikipedia.org/wiki/Knowledge",
+            username: "Knowledge",
+            bio: "Foundations for lifelong learning.",
+            joinedDate: "October 2023",
+        },
+    ];
+
+    const skillsData = [
+        {
+            title: "Hard skills",
+            items: [
+                "Әр бағыт бойынша арнайы стратегия арқылы жұмыстанып, даму",
+                "Жеке дайын жоба/стартап",
+                "Мықты портфолио құру",
+                "Зерттеу және аналитика",
+                "Қаржылық сауаттылық",
+                "Python-ға кіріспе, логика",
+            ],
+            link: "https://en.wikipedia.org/wiki/Skill#=Hard_skills",
+            username: "Hard skills",
+            bio: "Foundations for lifelong learning.",
+            joinedDate: "October 2023",
+        },
+        {
+            title: "Soft skills",
+            items: [
+                "Өзін-өзі тану дағдылары мен мақсаттары",
+                "Презентация дағдылары",
+                "Критикалық ойлау",
+                "Академиялық жазу және зерттеу дағдылары",
+                "Көшбасшылық және командамен жұмыс",
+                "Эмоционалды интеллект",
+            ],
+            link: "https://en.wikipedia.org/wiki/Soft_skills",
+            username: "Soft skills",
+            bio: "Foundations for lifelong learning.",
+            joinedDate: "October 2023",
+        },
+    ];
+
+    const resultsData = [
+        "Кәсіптік бағдар беру (профориентация) бойынша көмек",
+        "Жеке даму жолы",
+        "Жеке жобалар, байқаулар мен тәжірибеден құралған дайын портфолио",
+        "Жарыстарға, олимпиадаларға, шараларға қатысу",
+        "Тәлімгерлермен (менторлармен) тұрақты жеке консультациялар",
+        "Бағдарламаны бітіргені туралы сертификат",
+    ];
+
+    onMount(() => {
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 60000); // Update every minute
+        return () => clearInterval(interval);
+    });
+
     import type { EmblaCarouselType } from "embla-carousel"; // Import the type from embla-carouse
 
     // Carousel logic
@@ -318,8 +420,6 @@
     </p>
 </div>
 
-<!-- Description -->
-
 <div class="max-w-4xl p-4 mx-auto center-grid">
     <h1
         class="flex flex-col w-full text-4xl font-extrabold tracking-tight scroll-m-20 text-balance"
@@ -435,9 +535,11 @@
                                                 GPA {mentor.gpa}
                                             </Badge>
                                         </div>
-                                        <p class="relative font-regular text-left line-clamp-4">
+                                        <p
+                                            class="relative font-regular text-left line-clamp-4"
+                                        >
                                             {mentor.about}
-                                          </p>
+                                        </p>
                                     </div>
                                 </Card.Content>
                             </Card.Root>
@@ -595,86 +697,52 @@
         көтерілуге көмектесеміз.
     </p>
     <div class="grid gap-4 md:grid-cols-3">
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Журналистика және медиа</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Мақала, сценарий жазу; сұқбат алу; репортаж түсіру;
-                    аудитория алдында сөйлеуді үйрену
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>3D және дизайн</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    3D-басып шығару, графикамен жұмыс істеу; макеттер мен
-                    брендтер жасау
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Пікірсайыс және көпшілік алдында сөйлеу</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Аргументация, импровизация, турнирлерге қатысу
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Кодинг және ІТ жобалар</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Веб-сайт құру, деректерді талдау, Python, жасанды интеллект
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Инновациялар және ғылыми стартаптар</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Шынайы мәселелерді шешу; идеяларды жүзеге асыру
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Әлеуметтік клубтар және еріктілік</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Қайырымдылық жобаларын ұйымдастыру, еріктілікке белсенді
-                    түрде атсалысу
-                </p>
-            </Card.Content>
-        </Card.Root>
-
-        <Card.Root>
-            <Card.Header>
-                <Card.Title>Бизнес және кәсіпкерлік</Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    Өнім ойлап табу, оны нарыққа шығару, командалық менеджмент,
-                    қаржылық жоспарлау
-                </p>
-            </Card.Content>
-        </Card.Root>
+        {#each cardData as card}
+            <HoverCard.Root>
+                <HoverCard.Trigger
+                    href={card.link}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    class="rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black h-full"
+                >
+                    <Card.Root class="h-full flex flex-col">
+                        <Card.Header>
+                            <Card.Title>{card.title}</Card.Title>
+                        </Card.Header>
+                        <Card.Content>
+                            <p class="text-balance">
+                                {card.description}
+                            </p>
+                        </Card.Content>
+                    </Card.Root>
+                </HoverCard.Trigger>
+                <HoverCard.Content class="">
+                    <div class="flex justify-between space-x-4">
+                        <Avatar.Root class="">
+                            <Avatar.Image
+                                src="https://github.com/wikipedia.png"
+                            />
+                            <Avatar.Fallback></Avatar.Fallback>
+                        </Avatar.Root>
+                        <div class="flex justify-between space-x-4">
+                            <div class="space-y-1">
+                                <h4 class="text-sm font-semibold">
+                                    {card.username}
+                                </h4>
+                                <!-- <p class="text-sm">{card.bio}</p> -->
+                                <div class="flex items-center">
+                                    <span
+                                        class="text-muted-foreground text-xs wrap-anywhere"
+                                    >
+                                        {card.link}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </HoverCard.Content>
+            </HoverCard.Root>
+        {/each}
     </div>
 </div>
 
@@ -689,54 +757,62 @@
     <Separator class="m-4" />
 
     <div class="grid gap-4 md:grid-cols-2 w-full">
-        <Card.Root>
-            <Card.Header>
-                <Card.Title
-                    class="flex flex-col items-center justify-between text-4xl font-medium"
+        {#each skillsData as skill}
+            <HoverCard.Root>
+                <HoverCard.Trigger
+                    href={skill.link}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    class="rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-black h-full"
                 >
-                    Hard skills
-                </Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    - Әр бағыт бойынша арнайы стратегия арқылы жұмыстанып, даму
-                    <br />
-                    - Жеке дайын жоба/стартап
-                    <br />
-                    - Мықты портфолио құру
-                    <br />
-                    - Зерттеу және аналитика
-                    <br />
-                    - Қаржылық сауаттылық
-                    <br />
-                    - Python-ға кіріспе, логика
-                </p>
-            </Card.Content>
-        </Card.Root>
-        <Card.Root>
-            <Card.Header>
-                <Card.Title
-                    class="flex flex-col items-center justify-between text-4xl font-medium"
-                >
-                    Soft skills
-                </Card.Title>
-            </Card.Header>
-            <Card.Content>
-                <p class="text-balance">
-                    - Өзін-өзі тану дағдылары мен мақсаттары
-                    <br />
-                    - Презентация дағдылары
-                    <br />
-                    - Критикалық ойлау
-                    <br />
-                    - Академиялық жазу және зерттеу дағдылары
-                    <br />
-                    - Көшбасшылық және командамен жұмыс
-                    <br />
-                    - Эмоционалды интеллект
-                </p>
-            </Card.Content>
-        </Card.Root>
+                    <Card.Root class="h-full flex flex-col">
+                        <Card.Header>
+                            <Card.Title
+                                class="flex flex-col items-center justify-between text-4xl font-medium"
+                            >
+                                {skill.title}
+                            </Card.Title>
+                        </Card.Header>
+                        <Card.Content>
+                            <p class="text-balance">
+                                {#each skill.items as item, index}
+                                    - {item}
+                                    {#if index < skill.items.length - 1}<br
+                                        />{/if}
+                                {/each}
+                            </p>
+                        </Card.Content>
+                    </Card.Root>
+                </HoverCard.Trigger>
+                <HoverCard.Content class="">
+                    <div class="flex justify-between space-x-4">
+                        <div class="flex justify-between space-x-4">
+                            <Avatar.Root class="">
+                                <Avatar.Image
+                                    src="https://github.com/wikipedia.png"
+                                />
+                                <Avatar.Fallback>SK</Avatar.Fallback>
+                            </Avatar.Root>
+                            <div class="flex justify-between space-x-4">
+                                <div class="space-y-1">
+                                    <h4 class="text-sm font-semibold">
+                                        {skill.username}
+                                    </h4>
+                                    <!-- <p class="text-sm">{skill.bio}</p> -->
+                                    <div class="flex items-center">
+                                        <span
+                                            class="text-muted-foreground text-xs wrap-anywhere"
+                                        >
+                                            {skill.link}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </HoverCard.Content>
+            </HoverCard.Root>
+        {/each}
     </div>
 </div>
 
@@ -749,34 +825,12 @@
     </h1>
     <Separator class="my-4" />
     <ul class="grid gap-3 leading-relaxed list-none">
-        <li class="flex items-start gap-2">
-            <span class="">→</span>
-            <span>Кәсіптік бағдар беру (профориентация) бойынша көмек</span>
-        </li>
-        <li class="flex items-start gap-2">
-            <span class="">→</span>
-            <span>Жеке даму жолы</span>
-        </li>
-        <li class="flex items-start gap-2">
-            <span class="">→</span>
-            <span>
-                Жеке жобалар, байқаулар мен тәжірибеден құралған дайын портфолио
-            </span>
-        </li>
-        <li class="flex items-start gap-2">
-            <span class="">→</span>
-            <span>Жарыстарға, олимпиадаларға, шараларға қатысу</span>
-        </li>
-        <li class="flex items-start gap-2">
-            <span class="">→</span>
-            <span>
-                Тәлімгерлермен (менторлармен) тұрақты жеке консультациялар
-            </span>
-        </li>
-        <li class="flex items-start gap-2">
-            <span class="">→</span>
-            <span>Бағдарламаны бітіргені туралы сертификат</span>
-        </li>
+        {#each resultsData as result}
+            <li class="flex items-start gap-2">
+                <span class="">→</span>
+                <span>{result}</span>
+            </li>
+        {/each}
     </ul>
 </div>
 <!-- Pricing -->

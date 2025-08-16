@@ -791,7 +791,7 @@
                                 <Avatar.Image
                                     src="https://github.com/wikipedia.png"
                                 />
-                                <Avatar.Fallback>SK</Avatar.Fallback>
+                                <Avatar.Fallback></Avatar.Fallback>
                             </Avatar.Root>
                             <div class="flex justify-between space-x-4">
                                 <div class="space-y-1">

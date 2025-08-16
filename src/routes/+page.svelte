@@ -24,6 +24,15 @@
 
     import * as Pagination from "$lib/components/ui/pagination/index.js";
 
+    import karakat_md from "$lib/about/karakat.md?raw";
+    import sara_md from "$lib/about/sara.md?raw";
+    import arsen_md from "$lib/about/arsen.md?raw";
+    import nurila_md from "$lib/about/nurila.md?raw";
+    import erkebulan_md from "$lib/about/erkebulan.md?raw";
+    import zeinep_md from "$lib/about/zeinep.md?raw";
+    import amira_md from "$lib/about/amira.md?raw";
+    import akku_md from "$lib/about/akku.md?raw";
+
     let days = $state(0);
     let hours = $state(0);
     let minutes = $state(0);
@@ -64,7 +73,7 @@
             username: "ba1gabekov",
             badge: "CEO",
             secondary: "Founder",
-            about: "Мен – халықаралық олимпиадалар мен байқаулардың жеңімпазымын. Менің мақсатым – жастарға өз әлеуетін ашуға көмектесу.",
+            about: erkebulan_md,
             gpa: "5.0",
         },
         {
@@ -76,6 +85,7 @@
             username: "knarrahaz",
             badge: "Journalism",
             secondary: "Media",
+            about: karakat_md,
             gpa: "4.9",
         },
         {
@@ -84,9 +94,10 @@
             pfp: images["sara_pfp.jpg"],
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            username: "",
+            username: "sara.sairanova",
             badge: "Innovation",
             secondary: "Startup",
+            about: sara_md,
             gpa: "5.0",
         },
         {
@@ -98,6 +109,7 @@
             username: "zak_amira",
             badge: "Business",
             secondary: "Economist",
+            about: amira_md,
             gpa: "4.5",
         },
         {
@@ -109,6 +121,7 @@
             username: "zweesq_",
             badge: "Debates",
             secondary: "Economist",
+            about: zeinep_md,
             gpa: "4.7",
         },
         {
@@ -120,6 +133,7 @@
             username: "nurkhus_",
             badge: "Social",
             secondary: "Economist",
+            about: nurila_md,
             gpa: "5.0",
         },
         {
@@ -131,6 +145,7 @@
             username: "kkrywi",
             badge: "Primary",
             secondary: "Secondary",
+            about: akku_md,
             gpa: "5.0",
         },
         {
@@ -142,6 +157,7 @@
             username: "decastyled",
             badge: "3D Graphics",
             secondary: "Artist",
+            about: arsen_md,
             gpa: "4.6",
         },
     ];
@@ -354,9 +370,7 @@
     >
         <Carousel.Content class="-ml-4">
             {#each mentors as mentor, i (i)}
-                <Carousel.Item
-                    class="pl-4 basis-full sm:basis-1/2 md:basis-1/3"
-                >
+                <Carousel.Item class="pl-4 basis-full md:basis-1/3">
                     <Dialog.Root>
                         <Dialog.Trigger class="w-full">
                             <Card.Root
@@ -411,25 +425,26 @@
                                         <div
                                             class="flex w-full flex-wrap gap-2 relative pb-2"
                                         >
-                                            <Badge variant="default">
+                                            <Badge variant="secondary">
                                                 {mentor.badge}
                                             </Badge>
                                             <Badge variant="secondary">
                                                 {mentor.secondary}
                                             </Badge>
+                                            <Badge variant="secondary">
+                                                GPA {mentor.gpa}
+                                            </Badge>
                                         </div>
-                                        <p
-                                            class="relative font-regular text-left"
-                                        >
-                                            {mentor.description}
-                                        </p>
+                                        <p class="relative font-regular text-left line-clamp-4">
+                                            {mentor.about}
+                                          </p>
                                     </div>
                                 </Card.Content>
                             </Card.Root>
                         </Dialog.Trigger>
 
                         <Dialog.Content
-                            class="max-h-[90vh] overflow-y-auto p-4 box-border"
+                            class="max-h-[90vh] overflow-y-auto p-4 box-border !max-w-5xl"
                         >
                             <div class="flex flex-col sm:flex-row gap-4">
                                 <!-- Left Column: Mentor Info and Image -->
@@ -443,9 +458,14 @@
                                         <div
                                             class="flex w-full flex-wrap gap-2 relative"
                                         >
-                                            <Badge>{mentor.badge}</Badge>
+                                            <Badge variant="default">
+                                                {mentor.badge}
+                                            </Badge>
                                             <Badge variant="secondary">
                                                 {mentor.secondary}
+                                            </Badge>
+                                            <Badge variant="secondary">
+                                                GPA {mentor.gpa}
                                             </Badge>
                                         </div>
                                         <!-- <Dialog.Description
@@ -463,14 +483,14 @@
                                         <div
                                             class="absolute bottom-0 left-0 w-full p-4 text-white font-regular text-2xl text-left"
                                         >
-                                            <div
+                                            <!-- <div
                                                 class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
-                                            ></div>
-                                            <p
+                                            ></div> -->
+                                            <!-- <p
                                                 class="relative font-regular text-left"
                                             >
                                                 {mentor.description}
-                                            </p>
+                                            </p> -->
                                         </div>
                                     </div>
                                 </div>
@@ -488,9 +508,9 @@
                                         Мен туралы
                                     </h2>
                                     <div
-                                        class="flex-1 overflow-y-auto pr-2 box-border sm:max-h-[57.7vh] flex flex-col gap-4 text-left"
+                                        class="flex-1 overflow-y-auto pr-2 box-border sm:max-h-[52.5vh] flex flex-col gap-4 text-left"
                                     >
-                                        <p class="">
+                                        <p class="whitespace-pre-wrap">
                                             {mentor.about
                                                 ? mentor.about
                                                 : "Бұл ментор туралы ақпарат жоқ."}
@@ -518,7 +538,21 @@
         perPage={1}
         page={currentIndex + 1}
         onPageChange={(newPage) => {
-            currentIndex = newPage - 1; // Update currentIndex (0-based)
+            // Check if we're on mobile (single card view) or desktop (3 cards view)
+            const isMobile = window.innerWidth < 768; // md breakpoint
+
+            if (isMobile) {
+                // On mobile: each page shows exactly one card
+                currentIndex = newPage - 1;
+            } else {
+                // On desktop: handle the 3-card view logic
+                if (newPage >= mentors.length - 2) {
+                    // Pages 6, 7, 8 should all show the last group of cards
+                    currentIndex = Math.max(0, mentors.length - 3);
+                } else {
+                    currentIndex = newPage - 1;
+                }
+            }
         }}
     >
         {#snippet children({ pages, currentPage })}
